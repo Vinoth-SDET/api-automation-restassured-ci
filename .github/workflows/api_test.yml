@@ -1,4 +1,5 @@
 name: API Automation Tests
+run-name: "🚀 API Automation Tests — ${{ github.ref_name }} branch"
 
 on:
   push:
