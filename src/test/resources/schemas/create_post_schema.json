@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Create Post Response Schema",
+  "type": "object",
+  "required": ["id"],
+  "properties": {
+    "title":  { "type": "string"  },
+    "body":   { "type": "string"  },
+    "userId": { "type": "integer" },
+    "id":     { "type": "integer" }
+  }
+}
