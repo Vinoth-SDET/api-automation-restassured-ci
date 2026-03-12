@@ -1,7 +1,7 @@
 # API Automation Framework
 
-[![CI](https://github.com/Vinoth-SDET/api-automation-restassured-ci/actions/workflows/ci.yml/badge.svg)](https://github.com/Vinoth-SDET/api-automation-restassured-ci/actions/workflows/ci.yml)
-[![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://Vinoth-SDET.github.io/api-automation-restassured-ci)
+[![CI](https://github.com/Vinoth-SDET/enterprise-api-automation-suite/actions/workflows/ci.yml/badge.svg)](https://github.com/Vinoth-SDET/enterprise-api-automation-suite/actions/workflows/ci.yml)
+[![Allure Report](https://img.shields.io/badge/Allure-Report-brightgreen)](https://Vinoth-SDET.github.io/enterprise-api-automation-suite)
 [![Java](https://img.shields.io/badge/Java-21-blue)](https://adoptium.net/)
 [![RestAssured](https://img.shields.io/badge/RestAssured-5.4.0-orange)](https://rest-assured.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -51,7 +51,7 @@ The framework follows a **Ports & Adapters** pattern adapted for test automation
 ## Project Structure
 
 ```
-api-automation-restassured-ci/
+enterprise-api-automation-suite/
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml                    # PR gate: compile + test + report
@@ -105,8 +105,8 @@ api-automation-restassured-ci/
 
 ```bash
 # Clone
-git clone https://github.com/Vinoth-SDET/api-automation-restassured-ci
-cd api-automation-restassured-ci
+git clone https://github.com/Vinoth-SDET/enterprise-api-automation-suite
+cd enterprise-api-automation-suite
 
 # Run smoke suite on QA (default)
 mvn test -Denv=qa -Dtestng.suite=src/test/resources/testng-suites/smoke.xml
@@ -166,7 +166,7 @@ GitHub Actions runs automatically on every PR and push to `main`:
 2. **Test** — matrix strategy: `[smoke, regression] × [qa]`
 3. **Report** — merge Allure results and publish to GitHub Pages
 
-**Live Allure Report:** https://Vinoth-SDET.github.io/api-automation-restassured-ci
+**Live Allure Report:** https://Vinoth-SDET.github.io/enterprise-api-automation-suite
 
 ---
 
@@ -188,8 +188,9 @@ GitHub Actions runs automatically on every PR and push to `main`:
 ## Author
 
 **Vinoth M** — Staff SDET  
-[GitHub](https://github.com/Vinoth-SDET) · [LinkedIn](https://linkedin.com/in/vinoth-m)
+[GitHub](https://github.com/Vinoth-SDET) · [LinkedIn](https://linkedin.com/in/vinoth-m-qa)
 
 ---
+
 
 *Framework built to production standards. See [Architecture Decision Records](docs/ADR.md) for design rationale.*
