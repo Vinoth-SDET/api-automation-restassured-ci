@@ -20,7 +20,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Dependency versions -->
+        <!-------- Dependency versions -------->
         <restassured.version>5.4.0</restassured.version>
         <testng.version>7.9.0</testng.version>
         <allure.version>2.27.0</allure.version>
@@ -41,7 +41,7 @@
 
     <dependencies>
 
-        <!-- ── HTTP Client ─────────────────────────────────────────── -->
+        <!--  HTTP Client -->
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -53,21 +53,21 @@
             <version>${restassured.version}</version>
         </dependency>
 
-        <!-- ── Test Runner ─────────────────────────────────────────── -->
+        <!--  Test Runner -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
         </dependency>
 
-        <!-- ── Reporting ───────────────────────────────────────────── -->
+        <!--  Reporting  -->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
             <version>5.1.1</version>
         </dependency>L̥
 
-        <!-- ── JSON Serialisation ──────────────────────────────────── -->
+        <!--  JSON Serialisation -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -79,7 +79,7 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- ── Logging ─────────────────────────────────────────────── -->
+        <!--  Logging  -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
@@ -96,7 +96,7 @@
             <version>${log4j.version}</version>
         </dependency>
 
-        <!-- ── Boilerplate Reduction ───────────────────────────────── -->
+        <!--  Boilerplate Reduction  -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -104,21 +104,21 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- ── Fluent Assertions ───────────────────────────────────── -->
+        <!--  Fluent Assertions  -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
             <version>${assertj.version}</version>
         </dependency>
 
-        <!-- ── Test Data Generation ────────────────────────────────── -->
+        <!--  Test Data Generation  -->
         <dependency>
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
         </dependency>
 
-        <!-- ── AspectJ (required for Allure) ──────────────────────── -->
+        <!--  AspectJ (required for Allure)  -->
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -131,7 +131,7 @@
     <build>
         <plugins>
 
-            <!-- ── Compiler ────────────────────────────────────────── -->
+            <!--  Compiler  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -150,7 +150,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ── Surefire (TestNG runner) ────────────────────────── -->
+            <!--  Surefire (TestNG runner)  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -170,7 +170,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ── Allure Report ───────────────────────────────────── -->
+            <!--  Allure Report -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
@@ -182,7 +182,7 @@
                 </configuration>
             </plugin>
 
-            <!-- ── Enforce minimum Maven version ──────────────────── -->
+            <!--  Enforce minimum Maven version  -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -208,6 +208,6 @@
         </plugins>
     </build>
 
-
 </project>
+
 
