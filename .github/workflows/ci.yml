@@ -1,5 +1,4 @@
 name: CI - API Automation Suite
-
 on:
   push:
     branches: [ main, develop ]
@@ -13,29 +12,21 @@ on:
         default: "qa"
         type: choice
         options: [ dev, qa, staging ]
-      suite:
-        description: "Test suite to run"
-        required: true
-        default: "regression"
-        type: choice
-        options: [ smoke, regression, parallel ]
 
 env:
   JAVA_VERSION: "21"
-  MAVEN_OPTS: "-Xmx1024m -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
+  MAVEN_OPTS: "-Xmx1024m"
 
-# ── Job 1: Compile & Validate ─────────────────────────────────────────────────
 jobs:
+
+  # ── Job 1: Compile & Validate ──────────────────────────────────────────────
   build:
     name: Build & Compile
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Java ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: temurin
@@ -45,34 +36,26 @@ jobs:
         with:
           path: ~/.m2/repository
           key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-
+          restore-keys: maven-
 
-      - name: Compile (main + test sources)
-        run: mvn compile test-compile -B --no-transfer-progress
+      - name: Compile
+        run: mvn compile test-compile -B
 
-      - name: Validate project structure
-        run: mvn validate -B --no-transfer-progress
-
-
-  # ── Job 2: Run Tests (matrix over suites) ────────────────────────────────────
+  # ── Job 2: Run Tests ───────────────────────────────────────────────────────
   test:
-    name: "Test [${{ matrix.suite }}] on ${{ matrix.env }}"
+    name: Test [${{ matrix.suite }}] on ${{ matrix.env }}
     needs: build
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
-        env:   [ qa ]
+        env: [ qa ]
         suite: [ smoke, regression ]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Java ${{ env.JAVA_VERSION }}
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: ${{ env.JAVA_VERSION }}
           distribution: temurin
@@ -82,27 +65,32 @@ jobs:
         with:
           path: ~/.m2/repository
           key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-
 
-      - name: Run ${{ matrix.suite }} suite on ${{ matrix.env }}
+      - name: Run ${{ matrix.suite }} suite
         env:
-          QA_AUTH_TOKEN:      ${{ secrets.QA_AUTH_TOKEN }}
-          DEV_AUTH_TOKEN:     ${{ secrets.DEV_AUTH_TOKEN }}
-          STAGING_AUTH_TOKEN: ${{ secrets.STAGING_AUTH_TOKEN }}
+          QA_AUTH_TOKEN: ${{ secrets.QA_AUTH_TOKEN }}
         run: |
-          mvn test -B --no-transfer-progress \
+          mvn test -B \
             -Denv=${{ matrix.env }} \
             -Dtestng.suite=src/test/resources/testng-suites/${{ matrix.suite }}.xml \
-            -Dthreads=5 \
-            -Dlog.level=INFO
+            -Dthreads=5
 
+      # ── Upload Allure raw results (merged in report job) ──────────────────
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-${{ matrix.suite }}-${{ matrix.env }}
-          path: allure-results/
+          path: target/allure-results/
+          retention-days: 14
+
+      # ── Upload ExtentReports HTML (self-contained, open directly) ─────────
+      - name: Upload Extent Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-report-${{ matrix.suite }}-${{ matrix.env }}
+          path: target/extent-reports/TestReport.html
           retention-days: 14
 
       - name: Upload log files
@@ -111,25 +99,16 @@ jobs:
         with:
           name: logs-${{ matrix.suite }}-${{ matrix.env }}
           path: target/logs/
-          retention-days: 7
 
-
-  # ── Job 3: Publish Allure Report to GitHub Pages ──────────────────────────────
+  # ── Job 3: Publish Allure Report to GitHub Pages ──────────────────────────
   report:
     name: Publish Allure Report
     needs: test
     runs-on: ubuntu-latest
     if: always()
 
-    permissions:
-      contents: write
-      pages: write
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # needed for gh-pages history
+      - uses: actions/checkout@v4
 
       - name: Download all Allure results
         uses: actions/download-artifact@v4
@@ -138,17 +117,17 @@ jobs:
           path: allure-results/
           merge-multiple: true
 
-      - name: Generate & publish Allure report
+      - name: Generate and Deploy Allure Report
         uses: simple-elf/allure-report-action@master
         with:
-          allure_results:  allure-results
-          gh_pages:        gh-pages
-          allure_report:   allure-report
-          allure_history:  allure-history
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token:  ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir:   allure-history
+          publish_dir: allure-history

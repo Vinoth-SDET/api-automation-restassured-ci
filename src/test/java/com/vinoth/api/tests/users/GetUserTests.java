@@ -7,20 +7,17 @@ import com.vinoth.api.models.request.UserRequest;
 import com.vinoth.api.models.response.UserResponse;
 import com.vinoth.api.services.UserService;
 import com.vinoth.api.utils.ResponseValidator;
-import io.qameta.allure.*;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Tests for User API — GET operations.
- *
- * <p>Note how the test class contains <em>zero</em> HTTP detail:
- * no URLs, no headers, no RestAssured DSL. It reads like a specification.
- * A business analyst can understand exactly what is being verified.
- */
 @Epic("User Management API")
 @Feature("GET /users")
 public class GetUserTests extends BaseTest {
@@ -31,8 +28,6 @@ public class GetUserTests extends BaseTest {
     public void initService() {
         userService = new UserService(api());
     }
-
-    // ── GET /users ────────────────────────────────────────────────────────────
 
     @Test(description = "GET /users returns 200 with a non-empty JSON array")
     @Story("List all users")
@@ -48,7 +43,7 @@ public class GetUserTests extends BaseTest {
                 .matchesSchema("user-list-schema.json");
     }
 
-    @Test(description = "GET /users — every user has required fields")
+    @Test(description = "GET /users - every user has required fields")
     @Story("List all users")
     @Severity(SeverityLevel.CRITICAL)
     public void getAllUsers_eachUserHasRequiredFields() {
@@ -61,8 +56,6 @@ public class GetUserTests extends BaseTest {
                 .fieldNotNull("[0].username")
                 .fieldNotNull("[0].email");
     }
-
-    // ── GET /users/{id} ───────────────────────────────────────────────────────
 
     @Test(description = "GET /users/{id} returns correct user for id=1")
     @Story("Get user by ID")
@@ -80,7 +73,7 @@ public class GetUserTests extends BaseTest {
                 .matchesSchema("user-response-schema.json");
     }
 
-    @Test(description = "GET /users/{id} — response deserialises to UserResponse POJO")
+    @Test(description = "GET /users/{id} - response deserialises to UserResponse POJO")
     @Story("Get user by ID")
     @Severity(SeverityLevel.NORMAL)
     public void getUserById_deserialisesToPojo() {
@@ -96,7 +89,7 @@ public class GetUserTests extends BaseTest {
     }
 
     @Test(description = "GET /users/{id} with non-existent id returns 404")
-    @Story("Error handling — not found")
+    @Story("Error handling - not found")
     @Severity(SeverityLevel.NORMAL)
     public void getUserById_withNonExistentId_returns404() {
         Response response = userService.getUserById(99999);
@@ -105,14 +98,12 @@ public class GetUserTests extends BaseTest {
                 .statusIs(HttpStatus.NOT_FOUND);
     }
 
-    // ── Data-driven: POST /users ──────────────────────────────────────────────
-
     @Test(
-            description  = "POST /users creates a new user — data-driven across valid-users.json",
+            description = "POST /users creates a new user - data-driven across valid-users.json",
             dataProvider = "validUsers",
             dataProviderClass = UserDataProvider.class
     )
-    @Story("Create user — data-driven")
+    @Story("Create user - data-driven")
     @Severity(SeverityLevel.CRITICAL)
     public void createUser_withValidData_returns201(UserRequest payload) {
         Response response = userService.createUser(payload);

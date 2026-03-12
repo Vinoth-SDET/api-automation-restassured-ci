@@ -7,7 +7,11 @@ import com.vinoth.api.models.request.PostRequest;
 import com.vinoth.api.models.response.PostResponse;
 import com.vinoth.api.services.PostService;
 import com.vinoth.api.utils.ResponseValidator;
-import io.qameta.allure.*;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -59,11 +63,11 @@ public class PostCrudTests extends BaseTest {
     }
 
     @Test(
-            description  = "POST /posts creates a post — data-driven",
+            description  = "POST /posts creates a post - data-driven",
             dataProvider = "validPosts",
             dataProviderClass = PostDataProvider.class
     )
-    @Story("Create post — data-driven")
+    @Story("Create post - data-driven")
     @Severity(SeverityLevel.CRITICAL)
     public void createPost_withValidData_returns201(PostRequest payload) {
         Response response = postService.createPost(payload);

@@ -5,7 +5,11 @@ import com.vinoth.api.constants.HttpStatus;
 import com.vinoth.api.models.request.UserRequest;
 import com.vinoth.api.services.UserService;
 import com.vinoth.api.utils.ResponseValidator;
-import io.qameta.allure.*;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,7 +26,7 @@ public class CreateUserTests extends BaseTest {
     }
 
     @Test(description = "POST /users with full payload returns 201 with id assigned")
-    @Story("Create user — happy path")
+    @Story("Create user - happy path")
     @Severity(SeverityLevel.BLOCKER)
     public void createUser_withFullPayload_returns201AndAssignsId() {
         UserRequest payload = UserRequest.builder()
@@ -45,7 +49,7 @@ public class CreateUserTests extends BaseTest {
     }
 
     @Test(description = "POST /users with minimal payload (name only) returns 201")
-    @Story("Create user — minimal payload")
+    @Story("Create user - minimal payload")
     @Severity(SeverityLevel.NORMAL)
     public void createUser_withMinimalPayload_returns201() {
         UserRequest payload = UserRequest.builder()

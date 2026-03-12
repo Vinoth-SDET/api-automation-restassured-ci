@@ -4,93 +4,129 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.vinoth.api.client.ApiClient;
+import com.vinoth.api.config.ConfigManager;
 import com.vinoth.api.utils.ExtentManager;
+import io.qameta.allure.restassured.AllureRestAssured;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestResult;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
+import java.lang.reflect.Method;
 
-public class BaseTest {
+/**
+ * BaseTest wires up two independent reporting pipelines:
+ *
+ * <ul>
+ *   <li><b>Allure</b> — attached via {@code @Listeners(AllureTestNg.class)}.
+ *       Captures HTTP traffic through {@link AllureRestAssured} filter in ApiClient.
+ *       Output: target/allure-results/ (publish with mvn allure:report).</li>
+ *   <li><b>ExtentReports</b> — driven by ThreadLocal ExtentTest nodes created in
+ *       @BeforeMethod and flushed in @AfterSuite.
+ *       Output: target/extent-reports/TestReport.html.</li>
+ * </ul>
+ * <p>
+ * Both reports are uploaded as CI artifacts so recruiters can open either.
+ */
+@Listeners({io.qameta.allure.testng.AllureTestNg.class})
+public abstract class BaseTest {
 
     private static final Logger log = LogManager.getLogger(BaseTest.class);
 
-    // One ExtentReports for the whole suite
+    // One ApiClient per thread - essential for parallel safety
+    private static final ThreadLocal<ApiClient> CLIENT = new ThreadLocal<>();
+
+    // One ExtentTest node per thread - essential for parallel-safe Extent logging
+    private static final ThreadLocal<ExtentTest> EXTENT_TEST = new ThreadLocal<>();
+
     private static final ExtentReports extent = ExtentManager.getInstance();
 
-    // One ExtentTest node per test method, thread-safe
-    private static final ThreadLocal<ExtentTest> TEST_NODE = new ThreadLocal<>();
-
-    // One ApiClient per thread
-    protected static final ThreadLocal<ApiClient> CLIENT = new ThreadLocal<>();
-
-    // ── Suite lifecycle ───────────────────────────────────────────────────────
+    // -----------------------------------------------------------------------
+    // Suite lifecycle
+    // -----------------------------------------------------------------------
 
     @BeforeSuite(alwaysRun = true)
-    public void suiteSetup() {
-        log.info("Suite starting");
+    public void globalSetup() {
+        ConfigManager cfg = ConfigManager.get();
+        log.info("Suite starting | env={} | baseUrl={}",
+                System.getProperty("env", "qa"), cfg.baseUrl());
     }
 
     @AfterSuite(alwaysRun = true)
-    public void suiteTearDown() {
-        extent.flush();   // writes the HTML file to disk
-        log.info("Suite complete — Extent report flushed");
-        log.info("Report: {}/target/extent-reports/TestReport.html",
-                System.getProperty("user.dir"));
+    public void globalTearDown() {
+        extent.flush();
+        log.info("ExtentReports flushed to target/extent-reports/TestReport.html");
     }
 
-    // ── Test lifecycle ────────────────────────────────────────────────────────
+    // -----------------------------------------------------------------------
+    // Method lifecycle
+    // -----------------------------------------------------------------------
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp(java.lang.reflect.Method method) {
-        ApiClient client = new ApiClient();
-        CLIENT.set(client);
+    public void setUp(Method method) {
+        CLIENT.set(new ApiClient());
 
-        // Create a test node in the Extent report
-        ExtentTest test = extent.createTest(
-                method.getDeclaringClass().getSimpleName()
-                + " » " + method.getName());
-        TEST_NODE.set(test);
+        // Create an Extent test node for this method
+        String testName = getClass().getSimpleName() + " :: " + method.getName();
+        ExtentTest test = extent.createTest(testName);
+        EXTENT_TEST.set(test);
 
-        log.info("Starting: {} | correlationId={}",
-                method.getName(), client.getCorrelationId());
+        log.info("[START] {}", testName);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult result) {
-        ExtentTest test = TEST_NODE.get();
-        long duration = result.getEndMillis() - result.getStartMillis();
+        long dur = result.getEndMillis() - result.getStartMillis();
+        String methodName = result.getMethod().getMethodName();
+        String className = getClass().getSimpleName();
+
+        ExtentTest test = EXTENT_TEST.get();
 
         switch (result.getStatus()) {
             case ITestResult.SUCCESS:
-                test.log(Status.PASS,
-                        "PASSED in " + duration + "ms");
-                log.info("[PASS] {} | {}ms", result.getName(), duration);
+                test.log(Status.PASS, "Test PASSED");
+                log.info("[PASS] {}.{} | {}ms", className, methodName, dur);
                 break;
+
             case ITestResult.FAILURE:
-                test.log(Status.FAIL, "FAILED: " + result.getThrowable().getMessage());
-                test.fail(result.getThrowable());
-                log.error("[FAIL] {} | {}ms", result.getName(), duration);
+                test.log(Status.FAIL, "Test FAILED: " + result.getThrowable());
+                log.error("[FAIL] {}.{} | {}ms | {}",
+                        className, methodName, dur, result.getThrowable().getMessage());
                 break;
+
             case ITestResult.SKIP:
-                test.log(Status.SKIP, "SKIPPED");
-                log.warn("[SKIP] {}", result.getName());
+                test.log(Status.SKIP, "Test SKIPPED");
+                log.warn("[SKIP] {}.{}", className, methodName);
+                break;
+
+            default:
                 break;
         }
 
+        // Clean up ThreadLocals to prevent memory leaks in parallel runs
         CLIENT.remove();
-        TEST_NODE.remove();
+        EXTENT_TEST.remove();
     }
 
-    // ── Helper for subclasses ─────────────────────────────────────────────────
+    // -----------------------------------------------------------------------
+    // Accessors for sub-classes
+    // -----------------------------------------------------------------------
 
+    /**
+     * Returns the thread-local ApiClient. Never instantiate ApiClient directly in tests.
+     */
     protected ApiClient api() {
         return CLIENT.get();
     }
 
-    protected void log(String message) {
-        TEST_NODE.get().log(Status.INFO, message);
+    /**
+     * Returns the thread-local ExtentTest node for optional inline logging from tests.
+     */
+    protected ExtentTest extentTest() {
+        return EXTENT_TEST.get();
     }
 }
