@@ -1,0 +1,67 @@
+name: Nightly Regression
+
+on:
+  schedule:
+    - cron: "0 2 * * *"   # 02:00 UTC every day
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Target environment"
+        required: true
+        default: "qa"
+        type: choice
+        options: [ dev, qa, staging ]
+
+env:
+  JAVA_VERSION: "21"
+  MAVEN_OPTS: "-Xmx1024m"
+
+jobs:
+  nightly:
+    name: "Nightly Full Regression — ${{ github.event.inputs.environment || 'qa' }}"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Cache Maven packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: Run full regression (parallel)
+        env:
+          QA_AUTH_TOKEN:      ${{ secrets.QA_AUTH_TOKEN }}
+          STAGING_AUTH_TOKEN: ${{ secrets.STAGING_AUTH_TOKEN }}
+        run: |
+          mvn test -B --no-transfer-progress \
+            -Denv=${{ github.event.inputs.environment || 'qa' }} \
+            -Dtestng.suite=src/test/resources/testng-suites/parallel.xml \
+            -Dthreads=5
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-allure-results
+          path: allure-results/
+          retention-days: 30
+
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nightly-logs
+          path: target/logs/
+          retention-days: 14
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "::error::Nightly regression failed. Check Allure report for details."
