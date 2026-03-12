@@ -1,4 +1,4 @@
-name: API Automation CI
+name: CI - API Automation Suite
 
 on:
   push:
