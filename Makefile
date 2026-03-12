@@ -1,5 +1,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
-# API Automation Framework — Makefile shortcuts
+# Enterprise API Automation Framework — Makefile shortcuts
 #
 # Usage:
 #   make test                           # run regression on QA
@@ -55,4 +55,5 @@ clean:
 
 ## Show this help
 help:
+
 	@grep -E '^##' Makefile | sed 's/## //'
