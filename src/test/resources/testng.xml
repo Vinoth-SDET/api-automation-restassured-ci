@@ -5,9 +5,9 @@
 
     <test name="Reqres API Tests">
         <classes>
-            <class name="tests.GetUserTest"/>
-            <class name="tests.PostUserTest"/>
-            <class name="tests.DeleteUserTest"/>
+            <class name="tests.users.GetUserTests"/>
+            <class name="tests.users.PostUserTests"/>
+            <class name="tests.users.DeleteUserTests"/>
         </classes>
     </test>
 
