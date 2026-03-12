@@ -158,7 +158,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire - runs TestNG suites; aspectjweaver agent enables Allure @Step -->
+            <!-- Surefire -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -170,6 +170,7 @@
                     <systemPropertyVariables>
                         <env>${env}</env>
                         <threads>${threads}</threads>
+                        <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -178,14 +179,14 @@
                 </configuration>
             </plugin>
 
-            <!-- Allure Maven - generates HTML report from allure-results -->
+            <!-- Allure Maven -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
                 <version>2.12.0</version>
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
-                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
+                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
                     <reportDirectory>${project.build.directory}/allure-report</reportDirectory>
                 </configuration>
             </plugin>

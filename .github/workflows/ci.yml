@@ -1,4 +1,5 @@
 name: CI - API Automation Suite
+
 on:
   push:
     branches: [ main, develop ]
@@ -19,7 +20,7 @@ env:
 
 jobs:
 
-  # ── Job 1: Compile & Validate ──────────────────────────────────────────────
+  # Job 1: Compile and Validate
   build:
     name: Build & Compile
     runs-on: ubuntu-latest
@@ -41,7 +42,7 @@ jobs:
       - name: Compile
         run: mvn compile test-compile -B
 
-  # ── Job 2: Run Tests ───────────────────────────────────────────────────────
+  # Job 2: Run Tests
   test:
     name: Test [${{ matrix.suite }}] on ${{ matrix.env }}
     needs: build
@@ -75,22 +76,36 @@ jobs:
             -Dtestng.suite=src/test/resources/testng-suites/${{ matrix.suite }}.xml \
             -Dthreads=5
 
-      # ── Upload Allure raw results (merged in report job) ──────────────────
+      - name: Debug - list allure-results directory
+        if: always()
+        run: |
+          echo "=== Project root ==="
+          ls -la
+          echo "=== allure-results (root) ==="
+          ls -la allure-results/ 2>/dev/null || echo "NOT FOUND at root"
+          echo "=== target/allure-results ==="
+          ls -la target/allure-results/ 2>/dev/null || echo "NOT FOUND at target/allure-results"
+          echo "=== extent-reports ==="
+          ls -la target/extent-reports/ 2>/dev/null || echo "NOT FOUND"
+
+      # Allure writes to allure-results/ at project root (not target/)
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: allure-results-${{ matrix.suite }}-${{ matrix.env }}
-          path: target/allure-results/
+          path: allure-results/
+          if-no-files-found: warn
           retention-days: 14
 
-      # ── Upload ExtentReports HTML (self-contained, open directly) ─────────
+      # ExtentReports writes to target/extent-reports/
       - name: Upload Extent Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: extent-report-${{ matrix.suite }}-${{ matrix.env }}
           path: target/extent-reports/TestReport.html
+          if-no-files-found: warn
           retention-days: 14
 
       - name: Upload log files
@@ -99,8 +114,9 @@ jobs:
         with:
           name: logs-${{ matrix.suite }}-${{ matrix.env }}
           path: target/logs/
+          if-no-files-found: warn
 
-  # ── Job 3: Publish Allure Report to GitHub Pages ──────────────────────────
+  # Job 3: Publish Allure Report to GitHub Pages
   report:
     name: Publish Allure Report
     needs: test
@@ -116,6 +132,11 @@ jobs:
           pattern: allure-results-*
           path: allure-results/
           merge-multiple: true
+
+      - name: Debug - show downloaded results
+        run: |
+          echo "=== Downloaded allure-results ==="
+          find allure-results/ -type f 2>/dev/null || echo "allure-results directory is empty"
 
       - name: Generate and Deploy Allure Report
         uses: simple-elf/allure-report-action@master
