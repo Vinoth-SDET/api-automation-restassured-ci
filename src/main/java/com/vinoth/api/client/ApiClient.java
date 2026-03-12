@@ -1,7 +1,6 @@
 package com.vinoth.api.client;
 
 import com.vinoth.api.config.ConfigManager;
-import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.config.HttpClientConfig;
 import io.restassured.config.RestAssuredConfig;
@@ -43,7 +42,6 @@ public class ApiClient {
                         .httpClient(HttpClientConfig.httpClientConfig()
                                 .setParam("http.connection.timeout", cfg.timeout())
                                 .setParam("http.socket.timeout",     cfg.timeout())))
-                .addFilter(new AllureRestAssured())
                 .addFilter(new RetryFilter(cfg.retries()))
                 .addFilter(new RequestLoggingFilter(LogDetail.ALL))
                 .addFilter(new ResponseLoggingFilter(LogDetail.ALL))
@@ -128,4 +126,5 @@ public class ApiClient {
     public RequestSpecification getBaseSpec() {
         return baseSpec;
     }
+
 }
