@@ -1,0 +1,150 @@
+2026-03-12T10:13:04,213 [main] INFO  com.vinoth.api.config.ConfigManager [] - Configuration loaded | env=qa | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:04,227 [main] INFO  com.vinoth.api.base.BaseTest [] - ÕÕÕ Suite starting | env=qa | baseUrl=https://jsonplaceholder.typicode.com | threads=5 ÕÕÕ
+2026-03-12T10:13:04,262 [main] DEBUG com.vinoth.api.base.BaseTest [] - Allure environment.properties written to C:\Users\MAHADEV\api-automation-restassured-ci\allure-results\environment.properties
+2026-03-12T10:13:05,696 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.utils.TestDataLoader [] - Loaded 3 records from [testdata/users/valid-users.json]
+2026-03-12T10:13:06,895 [TestNG-PoolService-2] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=d6e83ba1-6808-4051-a03d-8f3c3261ddc5 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:06,895 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=aaa96c0b-9544-4566-83b9-15c24ad0076a | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:06,896 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [START] CreateUserTests.createUser_withFullPayload_returns201AndAssignsId | correlationId=aaa96c0b-9544-4566-83b9-15c24ad0076a
+2026-03-12T10:13:06,895 [TestNG-PoolService-3] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=4534d7d1-5c65-42c8-aace-8b150d2ab327 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:06,897 [TestNG-PoolService-2] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.createUser_withValidData_returns201 | correlationId=d6e83ba1-6808-4051-a03d-8f3c3261ddc5
+2026-03-12T10:13:06,898 [TestNG-PoolService-3] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.createUser_withValidData_returns201 | correlationId=4534d7d1-5c65-42c8-aace-8b150d2ab327
+2026-03-12T10:13:06,896 [TestNG-test-User API Tests-3] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=0eef9d4a-09ae-4522-834c-76a673aee955 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:06,900 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.base.BaseTest [] - [START] DeleteUserTests.deleteUser_responseBodyIsEmpty | correlationId=0eef9d4a-09ae-4522-834c-76a673aee955
+2026-03-12T10:13:06,896 [TestNG-PoolService-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:06,902 [TestNG-PoolService-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.createUser_withValidData_returns201 | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806
+2026-03-12T10:13:07,903 [TestNG-PoolService-3] INFO  com.vinoth.api.services.UserService [] - Creating user | name=Carol Davis | email=carol@example.com
+2026-03-12T10:13:07,903 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.services.UserService [] - Deleting user | id=1
+2026-03-12T10:13:07,904 [TestNG-PoolService-3] DEBUG com.vinoth.api.client.ApiClient [] - POST /users | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806
+2026-03-12T10:13:07,904 [TestNG-test-User API Tests-3] DEBUG com.vinoth.api.client.ApiClient [] - DELETE /users/1 | correlationId=0eef9d4a-09ae-4522-834c-76a673aee955
+2026-03-12T10:13:07,903 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.services.UserService [] - Creating user | name=Vinoth Murugan | email=vinoth@example.com
+2026-03-12T10:13:07,903 [TestNG-PoolService-2] INFO  com.vinoth.api.services.UserService [] - Creating user | name=Bob Smith | email=bob@example.com
+2026-03-12T10:13:07,905 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - POST /users | correlationId=aaa96c0b-9544-4566-83b9-15c24ad0076a
+2026-03-12T10:13:07,903 [TestNG-PoolService-1] INFO  com.vinoth.api.services.UserService [] - Creating user | name=Alice Johnson | email=alice@example.com
+2026-03-12T10:13:07,905 [TestNG-PoolService-2] DEBUG com.vinoth.api.client.ApiClient [] - POST /users | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806
+2026-03-12T10:13:07,905 [TestNG-PoolService-1] DEBUG com.vinoth.api.client.ApiClient [] - POST /users | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806
+2026-03-12T10:13:13,826 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.base.BaseTest [] - [PASS] DeleteUserTests.deleteUser_responseBodyIsEmpty | 6106ms | correlationId=0eef9d4a-09ae-4522-834c-76a673aee955
+2026-03-12T10:13:13,836 [TestNG-test-User API Tests-3] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=77e4f718-c64c-4167-a18d-883fb0c77e9f | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:13,837 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.base.BaseTest [] - [START] DeleteUserTests.deleteUser_withValidId_returns200 | correlationId=77e4f718-c64c-4167-a18d-883fb0c77e9f
+2026-03-12T10:13:13,851 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.services.UserService [] - Deleting user | id=1
+2026-03-12T10:13:13,851 [TestNG-test-User API Tests-3] DEBUG com.vinoth.api.client.ApiClient [] - DELETE /users/1 | correlationId=77e4f718-c64c-4167-a18d-883fb0c77e9f
+2026-03-12T10:13:14,196 [TestNG-test-User API Tests-3] INFO  com.vinoth.api.base.BaseTest [] - [PASS] DeleteUserTests.deleteUser_withValidId_returns200 | 347ms | correlationId=77e4f718-c64c-4167-a18d-883fb0c77e9f
+2026-03-12T10:13:16,064 [TestNG-PoolService-3] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.createUser_withValidData_returns201 | 8369ms | correlationId=4534d7d1-5c65-42c8-aace-8b150d2ab327
+2026-03-12T10:13:16,082 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [PASS] CreateUserTests.createUser_withFullPayload_returns201AndAssignsId | 8390ms | correlationId=aaa96c0b-9544-4566-83b9-15c24ad0076a
+2026-03-12T10:13:16,094 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=a597e009-2209-4dd2-aa0a-e3ac9796538d | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:16,095 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [START] CreateUserTests.createUser_withMinimalPayload_returns201 | correlationId=a597e009-2209-4dd2-aa0a-e3ac9796538d
+2026-03-12T10:13:16,109 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.services.UserService [] - Creating user | name=Minimal User | email=null
+2026-03-12T10:13:16,109 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - POST /users | correlationId=a597e009-2209-4dd2-aa0a-e3ac9796538d
+2026-03-12T10:13:16,293 [TestNG-PoolService-2] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.createUser_withValidData_returns201 | 8595ms | correlationId=d6e83ba1-6808-4051-a03d-8f3c3261ddc5
+2026-03-12T10:13:16,358 [TestNG-PoolService-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.createUser_withValidData_returns201 | 8659ms | correlationId=beb2c4a1-6852-43a1-bfe3-6c2a5db94806
+2026-03-12T10:13:16,403 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=c7395715-b48f-4b63-8c1d-5300e7462066 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:16,404 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getAllUsers_eachUserHasRequiredFields | correlationId=c7395715-b48f-4b63-8c1d-5300e7462066
+2026-03-12T10:13:16,430 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.services.UserService [] - Retrieving all users
+2026-03-12T10:13:16,432 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /users | correlationId=c7395715-b48f-4b63-8c1d-5300e7462066
+2026-03-12T10:13:16,542 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [PASS] CreateUserTests.createUser_withMinimalPayload_returns201 | 430ms | correlationId=a597e009-2209-4dd2-aa0a-e3ac9796538d
+2026-03-12T10:13:16,550 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=b3b5862a-9ce5-4f3d-bef1-abb9e57874bb | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:16,550 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [START] CreateUserTests.updateUser_withValidPayload_returns200 | correlationId=b3b5862a-9ce5-4f3d-bef1-abb9e57874bb
+2026-03-12T10:13:16,563 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.services.UserService [] - Updating user | id=1
+2026-03-12T10:13:16,564 [TestNG-test-User API Tests-2] DEBUG com.vinoth.api.client.ApiClient [] - PUT /users/1 | correlationId=b3b5862a-9ce5-4f3d-bef1-abb9e57874bb
+2026-03-12T10:13:17,263 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getAllUsers_eachUserHasRequiredFields | 836ms | correlationId=c7395715-b48f-4b63-8c1d-5300e7462066
+2026-03-12T10:13:17,272 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=cd3a7ab8-4387-459c-80a2-bc7b992f3524 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:17,273 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getAllUsers_returns200WithNonEmptyList | correlationId=cd3a7ab8-4387-459c-80a2-bc7b992f3524
+2026-03-12T10:13:17,288 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.services.UserService [] - Retrieving all users
+2026-03-12T10:13:17,290 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /users | correlationId=cd3a7ab8-4387-459c-80a2-bc7b992f3524
+2026-03-12T10:13:17,384 [TestNG-test-User API Tests-2] INFO  com.vinoth.api.base.BaseTest [] - [PASS] CreateUserTests.updateUser_withValidPayload_returns200 | 823ms | correlationId=b3b5862a-9ce5-4f3d-bef1-abb9e57874bb
+2026-03-12T10:13:17,659 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/user-list-schema.json
+2026-03-12T10:13:18,871 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getAllUsers_returns200WithNonEmptyList | 1574ms | correlationId=cd3a7ab8-4387-459c-80a2-bc7b992f3524
+2026-03-12T10:13:18,877 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=d75f57d4-4a0d-4642-a3dc-6b3aecd7d2a8 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:18,878 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getUserById_deserialisesToPojo | correlationId=d75f57d4-4a0d-4642-a3dc-6b3aecd7d2a8
+2026-03-12T10:13:18,898 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.services.UserService [] - Retrieving user | id=1
+2026-03-12T10:13:18,900 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /users/{id} | pathParams={id=1} | correlationId=d75f57d4-4a0d-4642-a3dc-6b3aecd7d2a8
+2026-03-12T10:13:20,398 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getUserById_deserialisesToPojo | 1507ms | correlationId=d75f57d4-4a0d-4642-a3dc-6b3aecd7d2a8
+2026-03-12T10:13:20,403 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=5a66254c-3804-4424-8a83-15831e491c34 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:20,403 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getUserById_returnsExpectedUser | correlationId=5a66254c-3804-4424-8a83-15831e491c34
+2026-03-12T10:13:20,412 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.services.UserService [] - Retrieving user | id=1
+2026-03-12T10:13:20,412 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /users/{id} | pathParams={id=1} | correlationId=5a66254c-3804-4424-8a83-15831e491c34
+2026-03-12T10:13:20,596 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/user-response-schema.json
+2026-03-12T10:13:20,618 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getUserById_returnsExpectedUser | 206ms | correlationId=5a66254c-3804-4424-8a83-15831e491c34
+2026-03-12T10:13:20,625 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=2f1afaf9-5b4d-4c13-8986-9399f83b625c | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:20,626 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getUserById_withNonExistentId_returns404 | correlationId=2f1afaf9-5b4d-4c13-8986-9399f83b625c
+2026-03-12T10:13:20,640 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.services.UserService [] - Retrieving user | id=99999
+2026-03-12T10:13:20,640 [TestNG-test-User API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /users/{id} | pathParams={id=99999} | correlationId=2f1afaf9-5b4d-4c13-8986-9399f83b625c
+2026-03-12T10:13:20,744 [TestNG-test-User API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getUserById_withNonExistentId_returns404 | 102ms | correlationId=2f1afaf9-5b4d-4c13-8986-9399f83b625c
+2026-03-12T10:13:20,801 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.utils.TestDataLoader [] - Loaded 3 records from [testdata/posts/valid-posts.json]
+2026-03-12T10:13:20,806 [TestNG-PoolService-3] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=b18f7396-d755-4858-a8a0-83c780397528 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:20,807 [TestNG-PoolService-2] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=c330c1aa-de4d-4204-b437-a9dfd7c2dc60 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:20,807 [TestNG-PoolService-3] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.createPost_withValidData_returns201 | correlationId=b18f7396-d755-4858-a8a0-83c780397528
+2026-03-12T10:13:20,807 [TestNG-PoolService-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=dd96f3af-9b9f-4bf6-9ffc-28b4a18ba1de | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:20,807 [TestNG-PoolService-2] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.createPost_withValidData_returns201 | correlationId=c330c1aa-de4d-4204-b437-a9dfd7c2dc60
+2026-03-12T10:13:20,807 [TestNG-PoolService-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.createPost_withValidData_returns201 | correlationId=dd96f3af-9b9f-4bf6-9ffc-28b4a18ba1de
+2026-03-12T10:13:20,844 [TestNG-PoolService-1] INFO  com.vinoth.api.services.PostService [] - Creating post | title=Understanding REST API Testing | userId=1
+2026-03-12T10:13:20,844 [TestNG-PoolService-2] INFO  com.vinoth.api.services.PostService [] - Creating post | title=Enterprise Test Automation Patterns | userId=1
+2026-03-12T10:13:20,844 [TestNG-PoolService-1] DEBUG com.vinoth.api.client.ApiClient [] - POST /posts | correlationId=b18f7396-d755-4858-a8a0-83c780397528
+2026-03-12T10:13:20,844 [TestNG-PoolService-2] DEBUG com.vinoth.api.client.ApiClient [] - POST /posts | correlationId=b18f7396-d755-4858-a8a0-83c780397528
+2026-03-12T10:13:20,853 [TestNG-PoolService-3] INFO  com.vinoth.api.services.PostService [] - Creating post | title=Why JSON Schema Validation Matters | userId=2
+2026-03-12T10:13:20,854 [TestNG-PoolService-3] DEBUG com.vinoth.api.client.ApiClient [] - POST /posts | correlationId=b18f7396-d755-4858-a8a0-83c780397528
+2026-03-12T10:13:21,288 [TestNG-PoolService-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.createPost_withValidData_returns201 | 445ms | correlationId=dd96f3af-9b9f-4bf6-9ffc-28b4a18ba1de
+2026-03-12T10:13:21,304 [TestNG-PoolService-2] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.createPost_withValidData_returns201 | 446ms | correlationId=c330c1aa-de4d-4204-b437-a9dfd7c2dc60
+2026-03-12T10:13:21,335 [TestNG-PoolService-3] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.createPost_withValidData_returns201 | 490ms | correlationId=b18f7396-d755-4858-a8a0-83c780397528
+2026-03-12T10:13:21,340 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=3f01162d-4d1c-4972-b9ef-a7ed7011b5f7 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:21,341 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.deletePost_returns200 | correlationId=3f01162d-4d1c-4972-b9ef-a7ed7011b5f7
+2026-03-12T10:13:21,351 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.services.PostService [] - Deleting post | id=1
+2026-03-12T10:13:21,352 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - DELETE /posts/1 | correlationId=3f01162d-4d1c-4972-b9ef-a7ed7011b5f7
+2026-03-12T10:13:21,666 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.deletePost_returns200 | 313ms | correlationId=3f01162d-4d1c-4972-b9ef-a7ed7011b5f7
+2026-03-12T10:13:21,673 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=23172ac5-0ae8-4e26-8030-47d42a4d0828 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:21,674 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.getAllPosts_returns200 | correlationId=23172ac5-0ae8-4e26-8030-47d42a4d0828
+2026-03-12T10:13:21,685 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.services.PostService [] - Retrieving all posts
+2026-03-12T10:13:21,685 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /posts | correlationId=23172ac5-0ae8-4e26-8030-47d42a4d0828
+2026-03-12T10:13:21,919 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/post-list-schema.json
+2026-03-12T10:13:22,027 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.getAllPosts_returns200 | 343ms | correlationId=23172ac5-0ae8-4e26-8030-47d42a4d0828
+2026-03-12T10:13:22,031 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=0baaad94-0840-491c-aaef-bb8ffd2ceee5 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:22,032 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.getPostById_returnsExpectedPost | correlationId=0baaad94-0840-491c-aaef-bb8ffd2ceee5
+2026-03-12T10:13:22,039 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.services.PostService [] - Retrieving post | id=1
+2026-03-12T10:13:22,039 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /posts/{id} | pathParams={id=1} | correlationId=0baaad94-0840-491c-aaef-bb8ffd2ceee5
+2026-03-12T10:13:22,224 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/post-response-schema.json
+2026-03-12T10:13:22,246 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.getPostById_returnsExpectedPost | 205ms | correlationId=0baaad94-0840-491c-aaef-bb8ffd2ceee5
+2026-03-12T10:13:22,253 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=d18db882-5013-47dc-b769-bef980d72865 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:22,253 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.getPostsByUserId_returnsOnlyUserPosts | correlationId=d18db882-5013-47dc-b769-bef980d72865
+2026-03-12T10:13:22,265 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.services.PostService [] - Retrieving posts | params={userId=1}
+2026-03-12T10:13:22,266 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - GET /posts | queryParams={userId=1} | correlationId=d18db882-5013-47dc-b769-bef980d72865
+2026-03-12T10:13:22,424 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.getPostsByUserId_returnsOnlyUserPosts | 158ms | correlationId=d18db882-5013-47dc-b769-bef980d72865
+2026-03-12T10:13:22,433 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=133f9e48-68c9-471e-ad0b-26cdcdca6f65 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:13:22,433 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.updatePost_returns200WithUpdatedFields | correlationId=133f9e48-68c9-471e-ad0b-26cdcdca6f65
+2026-03-12T10:13:22,447 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.services.PostService [] - Updating post | id=1
+2026-03-12T10:13:22,450 [TestNG-test-Post API Tests-1] DEBUG com.vinoth.api.client.ApiClient [] - PUT /posts/1 | correlationId=133f9e48-68c9-471e-ad0b-26cdcdca6f65
+2026-03-12T10:13:23,234 [TestNG-test-Post API Tests-1] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.updatePost_returns200WithUpdatedFields | 789ms | correlationId=133f9e48-68c9-471e-ad0b-26cdcdca6f65
+2026-03-12T10:13:23,263 [main] INFO  com.vinoth.api.base.BaseTest [] - ÕÕÕ Suite complete ÕÕÕ
+2026-03-12T10:31:01,285 [main] INFO  com.vinoth.api.config.ConfigManager [] - Configuration loaded | env=qa | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:01,305 [main] INFO  com.vinoth.api.base.BaseTest [] - ‚ïê‚ïê‚ïê Suite starting | env=qa | baseUrl=https://jsonplaceholder.typicode.com | threads=5 ‚ïê‚ïê‚ïê
+2026-03-12T10:31:01,333 [main] DEBUG com.vinoth.api.base.BaseTest [] - Allure environment.properties written to C:\Users\MAHADEV\API_Automation_Framework\allure-results\environment.properties
+2026-03-12T10:31:08,047 [main] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=530e0c0d-c5fc-4036-a59c-3c5e0ee658e0 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:08,048 [main] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getAllUsers_returns200WithNonEmptyList | correlationId=530e0c0d-c5fc-4036-a59c-3c5e0ee658e0
+2026-03-12T10:31:08,763 [main] INFO  com.vinoth.api.services.UserService [] - Retrieving all users
+2026-03-12T10:31:08,764 [main] DEBUG com.vinoth.api.client.ApiClient [] - GET /users | correlationId=530e0c0d-c5fc-4036-a59c-3c5e0ee658e0
+2026-03-12T10:31:26,811 [main] WARN  com.vinoth.api.utils.RetryAnalyzer [] - Retrying failed test [1/1]: getAllUsers_returns200WithNonEmptyList | cause: 1 expectation failed.
+Expected response time was not a value less than <3000L> milliseconds, was 9547 milliseconds (9547 milliseconds).
+2026-03-12T10:31:26,874 [main] INFO  com.vinoth.api.base.BaseTest [] - [FAIL] GetUserTests.getAllUsers_returns200WithNonEmptyList | 18164ms | correlationId=530e0c0d-c5fc-4036-a59c-3c5e0ee658e0
+2026-03-12T10:31:26,898 [main] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=7b6381cd-a7ee-481d-97e6-ede2f8ad3877 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:26,900 [main] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getAllUsers_returns200WithNonEmptyList | correlationId=7b6381cd-a7ee-481d-97e6-ede2f8ad3877
+2026-03-12T10:31:26,922 [main] INFO  com.vinoth.api.services.UserService [] - Retrieving all users
+2026-03-12T10:31:26,922 [main] DEBUG com.vinoth.api.client.ApiClient [] - GET /users | correlationId=7b6381cd-a7ee-481d-97e6-ede2f8ad3877
+2026-03-12T10:31:27,764 [main] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/user-list-schema.json
+2026-03-12T10:31:30,757 [main] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getAllUsers_returns200WithNonEmptyList | 3833ms | correlationId=7b6381cd-a7ee-481d-97e6-ede2f8ad3877
+2026-03-12T10:31:30,770 [main] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=d475178a-b914-4a6d-af01-72bb3a137cb1 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:30,770 [main] INFO  com.vinoth.api.base.BaseTest [] - [START] GetUserTests.getUserById_returnsExpectedUser | correlationId=d475178a-b914-4a6d-af01-72bb3a137cb1
+2026-03-12T10:31:30,792 [main] INFO  com.vinoth.api.services.UserService [] - Retrieving user | id=1
+2026-03-12T10:31:30,792 [main] DEBUG com.vinoth.api.client.ApiClient [] - GET /users/{id} | pathParams={id=1} | correlationId=d475178a-b914-4a6d-af01-72bb3a137cb1
+2026-03-12T10:31:33,092 [main] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/user-response-schema.json
+2026-03-12T10:31:34,302 [main] INFO  com.vinoth.api.base.BaseTest [] - [PASS] GetUserTests.getUserById_returnsExpectedUser | 2347ms | correlationId=d475178a-b914-4a6d-af01-72bb3a137cb1
+2026-03-12T10:31:34,319 [main] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=c9e48adc-c1f0-40a5-9224-a23cc9e166bd | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:34,320 [main] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.getAllPosts_returns200 | correlationId=c9e48adc-c1f0-40a5-9224-a23cc9e166bd
+2026-03-12T10:31:34,474 [main] INFO  com.vinoth.api.services.PostService [] - Retrieving all posts
+2026-03-12T10:31:34,475 [main] DEBUG com.vinoth.api.client.ApiClient [] - GET /posts | correlationId=c9e48adc-c1f0-40a5-9224-a23cc9e166bd
+2026-03-12T10:31:36,021 [main] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/post-list-schema.json
+2026-03-12T10:31:36,257 [main] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.getAllPosts_returns200 | 1785ms | correlationId=c9e48adc-c1f0-40a5-9224-a23cc9e166bd
+2026-03-12T10:31:36,269 [main] DEBUG com.vinoth.api.client.ApiClient [] - ApiClient initialised | correlationId=a03ad473-8874-4bf6-8724-c75626853f88 | baseUrl=https://jsonplaceholder.typicode.com
+2026-03-12T10:31:36,269 [main] INFO  com.vinoth.api.base.BaseTest [] - [START] PostCrudTests.getPostById_returnsExpectedPost | correlationId=a03ad473-8874-4bf6-8724-c75626853f88
+2026-03-12T10:31:36,291 [main] INFO  com.vinoth.api.services.PostService [] - Retrieving post | id=1
+2026-03-12T10:31:36,292 [main] DEBUG com.vinoth.api.client.ApiClient [] - GET /posts/{id} | pathParams={id=1} | correlationId=a03ad473-8874-4bf6-8724-c75626853f88
+2026-03-12T10:31:37,509 [main] DEBUG com.vinoth.api.utils.SchemaValidator [] - Loading schema from classpath: schemas/post-response-schema.json
+2026-03-12T10:31:44,057 [main] INFO  com.vinoth.api.base.BaseTest [] - [PASS] PostCrudTests.getPostById_returnsExpectedPost | 7774ms | correlationId=a03ad473-8874-4bf6-8724-c75626853f88
+2026-03-12T10:31:44,073 [main] INFO  com.vinoth.api.base.BaseTest [] - ‚ïê‚ïê‚ïê Suite complete ‚ïê‚ïê‚ïê

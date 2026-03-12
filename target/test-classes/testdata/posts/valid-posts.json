@@ -1,0 +1,17 @@
+[
+  {
+    "userId": 1,
+    "title": "Understanding REST API Testing",
+    "body": "REST APIs are the backbone of modern software. This post covers best practices for testing them systematically."
+  },
+  {
+    "userId": 1,
+    "title": "Enterprise Test Automation Patterns",
+    "body": "Layered test frameworks with service abstractions make automation maintainable at scale."
+  },
+  {
+    "userId": 2,
+    "title": "Why JSON Schema Validation Matters",
+    "body": "Contract testing catches API drift early, reducing production incidents and saving debugging time."
+  }
+]

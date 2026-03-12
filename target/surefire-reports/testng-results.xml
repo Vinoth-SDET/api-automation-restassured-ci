@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="21" passed="21" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2026-03-12T10:13:04 IST" name="API Regression Suite" finished-at="2026-03-12T10:13:23 IST" duration-ms="18970">
+    <groups>
+    </groups>
+    <test started-at="2026-03-12T10:13:04 IST" name="User API Tests" finished-at="2026-03-12T10:13:20 IST" duration-ms="16479">
+      <class name="com.vinoth.api.tests.users.CreateUserTests">
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:04 IST" name="setUp" finished-at="2026-03-12T10:13:06 IST" duration-ms="2477" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.CreateUserTests.createUser_withFullPayload_returns201AndAssignsId()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:07 IST" name="initService" finished-at="2026-03-12T10:13:07 IST" duration-ms="513" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="createUser_withFullPayload_returns201AndAssignsId()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:07 IST" name="createUser_withFullPayload_returns201AndAssignsId" description="POST /users with full payload returns 201 with id assigned" finished-at="2026-03-12T10:13:16 IST" duration-ms="8390" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUser_withFullPayload_returns201AndAssignsId -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="tearDown" finished-at="2026-03-12T10:13:16 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createUser_withFullPayload_returns201AndAssignsId status=SUCCESS method=CreateUserTests.createUser_withFullPayload_returns201AndAssignsId()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="setUp" finished-at="2026-03-12T10:13:16 IST" duration-ms="5" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.CreateUserTests.createUser_withMinimalPayload_returns201()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="initService" finished-at="2026-03-12T10:13:16 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="createUser_withMinimalPayload_returns201()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="createUser_withMinimalPayload_returns201" description="POST /users with minimal payload (name only) returns 201" finished-at="2026-03-12T10:13:16 IST" duration-ms="430" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUser_withMinimalPayload_returns201 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="tearDown" finished-at="2026-03-12T10:13:16 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createUser_withMinimalPayload_returns201 status=SUCCESS method=CreateUserTests.createUser_withMinimalPayload_returns201()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="setUp" finished-at="2026-03-12T10:13:16 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.CreateUserTests.updateUser_withValidPayload_returns200()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="initService" finished-at="2026-03-12T10:13:16 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="updateUser_withValidPayload_returns200()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:16 IST" name="updateUser_withValidPayload_returns200" description="PUT /users/{id} full update returns 200 with updated fields" finished-at="2026-03-12T10:13:17 IST" duration-ms="823" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updateUser_withValidPayload_returns200 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883]" started-at="2026-03-12T10:13:17 IST" name="tearDown" finished-at="2026-03-12T10:13:17 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=updateUser_withValidPayload_returns200 status=SUCCESS method=CreateUserTests.updateUser_withValidPayload_returns200()[pri:0, instance:com.vinoth.api.tests.users.CreateUserTests@1376883] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.vinoth.api.tests.users.CreateUserTests -->
+      <class name="com.vinoth.api.tests.users.DeleteUserTests">
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:04 IST" name="setUp" finished-at="2026-03-12T10:13:06 IST" duration-ms="2480" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.DeleteUserTests.deleteUser_responseBodyIsEmpty()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:07 IST" name="initService" finished-at="2026-03-12T10:13:07 IST" duration-ms="510" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="deleteUser_responseBodyIsEmpty()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:07 IST" name="deleteUser_responseBodyIsEmpty" description="DELETE /users/{id} response body is empty or {}" finished-at="2026-03-12T10:13:13 IST" duration-ms="6106" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteUser_responseBodyIsEmpty -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:13 IST" name="tearDown" finished-at="2026-03-12T10:13:13 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=deleteUser_responseBodyIsEmpty status=SUCCESS method=DeleteUserTests.deleteUser_responseBodyIsEmpty()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:13 IST" name="setUp" finished-at="2026-03-12T10:13:13 IST" duration-ms="6" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.DeleteUserTests.deleteUser_withValidId_returns200()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:13 IST" name="initService" finished-at="2026-03-12T10:13:13 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="deleteUser_withValidId_returns200()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:13 IST" name="deleteUser_withValidId_returns200" description="DELETE /users/{id} with valid id returns 200" finished-at="2026-03-12T10:13:14 IST" duration-ms="347" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteUser_withValidId_returns200 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00]" started-at="2026-03-12T10:13:14 IST" name="tearDown" finished-at="2026-03-12T10:13:14 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=deleteUser_withValidId_returns200 status=SUCCESS method=DeleteUserTests.deleteUser_withValidId_returns200()[pri:0, instance:com.vinoth.api.tests.users.DeleteUserTests@1f736d00] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.vinoth.api.tests.users.DeleteUserTests -->
+      <class name="com.vinoth.api.tests.users.GetUserTests">
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:05 IST" name="setUp" finished-at="2026-03-12T10:13:06 IST" duration-ms="1160" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:05 IST" name="setUp" finished-at="2026-03-12T10:13:06 IST" duration-ms="1163" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:05 IST" name="setUp" finished-at="2026-03-12T10:13:06 IST" duration-ms="1159" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="initService" finished-at="2026-03-12T10:13:07 IST" duration-ms="510" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="initService" finished-at="2026-03-12T10:13:07 IST" duration-ms="510" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="initService" finished-at="2026-03-12T10:13:07 IST" duration-ms="508" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="createUser_withValidData_returns201" description="POST /users creates a new user — data-driven across valid-users.json" data-provider="validUsers" finished-at="2026-03-12T10:13:16 IST" duration-ms="8595" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[UserRequest(name=Bob Smith, username=bsmith, email=bob@example.com, phone=555-0101, website=bobsmith.io, address=null, company=null)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUser_withValidData_returns201 -->
+        <test-method signature="createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="createUser_withValidData_returns201" description="POST /users creates a new user — data-driven across valid-users.json" data-provider="validUsers" finished-at="2026-03-12T10:13:16 IST" duration-ms="8369" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[UserRequest(name=Carol Davis, username=cdavis, email=carol@example.com, phone=555-0102, website=carol.dev, address=null, company=null)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUser_withValidData_returns201 -->
+        <test-method signature="createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:07 IST" name="createUser_withValidData_returns201" description="POST /users creates a new user — data-driven across valid-users.json" data-provider="validUsers" finished-at="2026-03-12T10:13:16 IST" duration-ms="8659" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[UserRequest(name=Alice Johnson, username=alicej, email=alice@example.com, phone=555-0100, website=alicejohnson.dev, address=null, company=null)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createUser_withValidData_returns201 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="tearDown" finished-at="2026-03-12T10:13:16 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createUser_withValidData_returns201 status=SUCCESS method=GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="tearDown" finished-at="2026-03-12T10:13:16 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createUser_withValidData_returns201 status=SUCCESS method=GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="tearDown" finished-at="2026-03-12T10:13:16 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createUser_withValidData_returns201 status=SUCCESS method=GetUserTests.createUser_withValidData_returns201(com.vinoth.api.models.request.UserRequest)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="setUp" finished-at="2026-03-12T10:13:16 IST" duration-ms="24" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.getAllUsers_eachUserHasRequiredFields()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="initService" finished-at="2026-03-12T10:13:16 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getAllUsers_eachUserHasRequiredFields()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:16 IST" name="getAllUsers_eachUserHasRequiredFields" description="GET /users — every user has required fields" finished-at="2026-03-12T10:13:17 IST" duration-ms="836" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getAllUsers_eachUserHasRequiredFields -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:17 IST" name="tearDown" finished-at="2026-03-12T10:13:17 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getAllUsers_eachUserHasRequiredFields status=SUCCESS method=GetUserTests.getAllUsers_eachUserHasRequiredFields()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:17 IST" name="setUp" finished-at="2026-03-12T10:13:17 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.getAllUsers_returns200WithNonEmptyList()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:17 IST" name="initService" finished-at="2026-03-12T10:13:17 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getAllUsers_returns200WithNonEmptyList()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:17 IST" name="getAllUsers_returns200WithNonEmptyList" description="GET /users returns 200 with a non-empty JSON array" finished-at="2026-03-12T10:13:18 IST" duration-ms="1574" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getAllUsers_returns200WithNonEmptyList -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:18 IST" name="tearDown" finished-at="2026-03-12T10:13:18 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getAllUsers_returns200WithNonEmptyList status=SUCCESS method=GetUserTests.getAllUsers_returns200WithNonEmptyList()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:18 IST" name="setUp" finished-at="2026-03-12T10:13:18 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.getUserById_deserialisesToPojo()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:18 IST" name="initService" finished-at="2026-03-12T10:13:18 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getUserById_deserialisesToPojo()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:18 IST" name="getUserById_deserialisesToPojo" description="GET /users/{id} — response deserialises to UserResponse POJO" finished-at="2026-03-12T10:13:20 IST" duration-ms="1507" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserById_deserialisesToPojo -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="tearDown" finished-at="2026-03-12T10:13:20 IST" duration-ms="0" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getUserById_deserialisesToPojo status=SUCCESS method=GetUserTests.getUserById_deserialisesToPojo()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="setUp" finished-at="2026-03-12T10:13:20 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.getUserById_returnsExpectedUser()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="initService" finished-at="2026-03-12T10:13:20 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getUserById_returnsExpectedUser()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="getUserById_returnsExpectedUser" description="GET /users/{id} returns correct user for id=1" finished-at="2026-03-12T10:13:20 IST" duration-ms="206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserById_returnsExpectedUser -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="tearDown" finished-at="2026-03-12T10:13:20 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getUserById_returnsExpectedUser status=SUCCESS method=GetUserTests.getUserById_returnsExpectedUser()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="setUp" finished-at="2026-03-12T10:13:20 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.users.GetUserTests.getUserById_withNonExistentId_returns404()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="initService" finished-at="2026-03-12T10:13:20 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getUserById_withNonExistentId_returns404()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="getUserById_withNonExistentId_returns404" description="GET /users/{id} with non-existent id returns 404" finished-at="2026-03-12T10:13:20 IST" duration-ms="102" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getUserById_withNonExistentId_returns404 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71]" started-at="2026-03-12T10:13:20 IST" name="tearDown" finished-at="2026-03-12T10:13:20 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getUserById_withNonExistentId_returns404 status=SUCCESS method=GetUserTests.getUserById_withNonExistentId_returns404()[pri:0, instance:com.vinoth.api.tests.users.GetUserTests@186d8a71] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- com.vinoth.api.tests.users.GetUserTests -->
+    </test> <!-- User API Tests -->
+    <test started-at="2026-03-12T10:13:20 IST" name="Post API Tests" finished-at="2026-03-12T10:13:23 IST" duration-ms="2446">
+      <class name="com.vinoth.api.tests.posts.PostCrudTests">
+        <test-method is-config="true" signature="globalSetup()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:04 IST" name="globalSetup" finished-at="2026-03-12T10:13:04 IST" duration-ms="194" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- globalSetup -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="setUp" finished-at="2026-03-12T10:13:20 IST" duration-ms="5" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="setUp" finished-at="2026-03-12T10:13:20 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="setUp" finished-at="2026-03-12T10:13:20 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="initService" finished-at="2026-03-12T10:13:20 IST" duration-ms="23" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="initService" finished-at="2026-03-12T10:13:20 IST" duration-ms="23" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="initService" finished-at="2026-03-12T10:13:20 IST" duration-ms="23" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="createPost_withValidData_returns201" description="POST /posts creates a post — data-driven" data-provider="validPosts" finished-at="2026-03-12T10:13:21 IST" duration-ms="446" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[PostRequest(userId=1, title=Enterprise Test Automation Patterns, body=Layered test frameworks with service abstractions make automation maintainable at scale.)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createPost_withValidData_returns201 -->
+        <test-method signature="createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="createPost_withValidData_returns201" description="POST /posts creates a post — data-driven" data-provider="validPosts" finished-at="2026-03-12T10:13:21 IST" duration-ms="445" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[PostRequest(userId=1, title=Understanding REST API Testing, body=REST APIs are the backbone of modern software. This post covers best practices for testing them systematically.)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createPost_withValidData_returns201 -->
+        <test-method signature="createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:20 IST" name="createPost_withValidData_returns201" description="POST /posts creates a post — data-driven" data-provider="validPosts" finished-at="2026-03-12T10:13:21 IST" duration-ms="490" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[PostRequest(userId=2, title=Why JSON Schema Validation Matters, body=Contract testing catches API drift early, reducing production incidents and saving debugging time.)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createPost_withValidData_returns201 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="tearDown" finished-at="2026-03-12T10:13:21 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createPost_withValidData_returns201 status=SUCCESS method=PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="tearDown" finished-at="2026-03-12T10:13:21 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createPost_withValidData_returns201 status=SUCCESS method=PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="tearDown" finished-at="2026-03-12T10:13:21 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=createPost_withValidData_returns201 status=SUCCESS method=PostCrudTests.createPost_withValidData_returns201(com.vinoth.api.models.request.PostRequest)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="setUp" finished-at="2026-03-12T10:13:21 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.deletePost_returns200()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="initService" finished-at="2026-03-12T10:13:21 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="deletePost_returns200()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="deletePost_returns200" description="DELETE /posts/{id} returns 200" finished-at="2026-03-12T10:13:21 IST" duration-ms="313" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deletePost_returns200 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="tearDown" finished-at="2026-03-12T10:13:21 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=deletePost_returns200 status=SUCCESS method=PostCrudTests.deletePost_returns200()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="setUp" finished-at="2026-03-12T10:13:21 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.getAllPosts_returns200()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="initService" finished-at="2026-03-12T10:13:21 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getAllPosts_returns200()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:21 IST" name="getAllPosts_returns200" description="GET /posts returns 200 with non-empty list" finished-at="2026-03-12T10:13:22 IST" duration-ms="343" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getAllPosts_returns200 -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="tearDown" finished-at="2026-03-12T10:13:22 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getAllPosts_returns200 status=SUCCESS method=PostCrudTests.getAllPosts_returns200()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="setUp" finished-at="2026-03-12T10:13:22 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.getPostById_returnsExpectedPost()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="initService" finished-at="2026-03-12T10:13:22 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getPostById_returnsExpectedPost()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="getPostById_returnsExpectedPost" description="GET /posts/{id} returns correct post for id=1" finished-at="2026-03-12T10:13:22 IST" duration-ms="205" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPostById_returnsExpectedPost -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="tearDown" finished-at="2026-03-12T10:13:22 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getPostById_returnsExpectedPost status=SUCCESS method=PostCrudTests.getPostById_returnsExpectedPost()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="setUp" finished-at="2026-03-12T10:13:22 IST" duration-ms="3" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.getPostsByUserId_returnsOnlyUserPosts()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="initService" finished-at="2026-03-12T10:13:22 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="getPostsByUserId_returnsOnlyUserPosts()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="getPostsByUserId_returnsOnlyUserPosts" description="GET /posts?userId=1 filters posts by user" finished-at="2026-03-12T10:13:22 IST" duration-ms="158" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getPostsByUserId_returnsOnlyUserPosts -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="tearDown" finished-at="2026-03-12T10:13:22 IST" duration-ms="2" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=getPostsByUserId_returnsOnlyUserPosts status=SUCCESS method=PostCrudTests.getPostsByUserId_returnsOnlyUserPosts()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setUp(java.lang.reflect.Method)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="setUp" finished-at="2026-03-12T10:13:22 IST" duration-ms="4" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.vinoth.api.tests.posts.PostCrudTests.updatePost_returns200WithUpdatedFields()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method is-config="true" signature="initService()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="initService" finished-at="2026-03-12T10:13:22 IST" duration-ms="1" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initService -->
+        <test-method signature="updatePost_returns200WithUpdatedFields()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:22 IST" name="updatePost_returns200WithUpdatedFields" description="PUT /posts/{id} full update returns 200" finished-at="2026-03-12T10:13:23 IST" duration-ms="789" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- updatePost_returns200WithUpdatedFields -->
+        <test-method is-config="true" signature="tearDown(org.testng.ITestResult)[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:23 IST" name="tearDown" finished-at="2026-03-12T10:13:23 IST" duration-ms="1" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=updatePost_returns200WithUpdatedFields status=SUCCESS method=PostCrudTests.updatePost_returns200WithUpdatedFields()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="globalTearDown()[pri:0, instance:com.vinoth.api.tests.posts.PostCrudTests@11787b64]" started-at="2026-03-12T10:13:23 IST" name="globalTearDown" finished-at="2026-03-12T10:13:23 IST" duration-ms="2" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- globalTearDown -->
+      </class> <!-- com.vinoth.api.tests.posts.PostCrudTests -->
+    </test> <!-- Post API Tests -->
+  </suite> <!-- API Regression Suite -->
+</testng-results>

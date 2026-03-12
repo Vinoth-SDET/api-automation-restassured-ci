@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Log4j2 configuration for API Automation Framework.
+
+  Appenders:
+  - Console: coloured output for local development (DEBUG+)
+  - RollingFile: async, gzip-compressed rolling logs for CI artifact collection
+
+  Log level is controlled by -Dlog.level (default: DEBUG locally, INFO on CI).
+  MDC key 'correlationId' is written by ApiClient and included in all log lines.
+-->
+<Configuration status="WARN" monitorInterval="30">
+    <Appenders>
+
+        <!-- ── Console (local dev) ──────────────────────────────────────── -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{HH:mm:ss.SSS} [%t] %highlight{%-5level}{FATAL=red blink, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=white} %logger{36} [%X{correlationId}] - %msg%n"/>
+        </Console>
+
+        <!-- ── Rolling file (CI artifact) ──────────────────────────────── -->
+        <RollingFile name="RollingFile"
+                     fileName="target/logs/api-tests.log"
+                     filePattern="target/logs/api-tests-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                    pattern="%d{ISO8601} [%t] %-5level %logger{36} [%X{correlationId}] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="5"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+
+        <!-- Framework logger — level driven by -Dlog.level system property -->
+        <Logger name="com.vinoth.api"
+                level="${sys:log.level:-DEBUG}"
+                additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <!-- Suppress noisy third-party loggers -->
+        <Logger name="io.restassured"            level="WARN"/>
+        <Logger name="org.apache.http"           level="WARN"/>
+        <Logger name="groovy.lang.MetaClassImpl" level="ERROR"/>
+
+        <!-- Root: WARN for anything else -->
+        <Root level="WARN">
+            <AppenderRef ref="Console"/>
+        </Root>
+
+    </Loggers>
+</Configuration>

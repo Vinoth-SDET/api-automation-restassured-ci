@@ -1,0 +1,20 @@
+[
+  {
+    "name": "",
+    "username": "emptyname",
+    "email": "empty@example.com",
+    "phone": "555-0200"
+  },
+  {
+    "name": "Invalid Email User",
+    "username": "invalidemail",
+    "email": "not-an-email",
+    "phone": "555-0201"
+  },
+  {
+    "name": "No Email User",
+    "username": "noemail",
+    "email": null,
+    "phone": "555-0202"
+  }
+]

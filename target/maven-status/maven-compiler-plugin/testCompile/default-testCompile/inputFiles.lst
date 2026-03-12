@@ -1,0 +1,8 @@
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\base\BaseTest.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\dataproviders\PostDataProvider.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\dataproviders\UserDataProvider.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\helpers\UserPayloadHelper.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\tests\posts\PostCrudTests.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\tests\users\CreateUserTests.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\tests\users\DeleteUserTests.java
+C:\Users\MAHADEV\api-automation-restassured-ci\src\test\java\com\vinoth\api\tests\users\GetUserTests.java

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Alice Johnson",
+    "username": "alicej",
+    "email": "alice@example.com",
+    "phone": "555-0100",
+    "website": "alicejohnson.dev"
+  },
+  {
+    "name": "Bob Smith",
+    "username": "bsmith",
+    "email": "bob@example.com",
+    "phone": "555-0101",
+    "website": "bobsmith.io"
+  },
+  {
+    "name": "Carol Davis",
+    "username": "cdavis",
+    "email": "carol@example.com",
+    "phone": "555-0102",
+    "website": "carol.dev"
+  }
+]
