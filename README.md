@@ -232,7 +232,7 @@ GitHub Actions runs automatically on every PR and push to `main`:
 
 ## Author
 
-**Vinoth M** — Staff SDET with 10+ years in test automation across financial services and SaaS
+**Vinoth M** — Staff SDET with 11+ years in test automation across financial services and SaaS
 
 [GitHub](https://github.com/Vinoth-SDET)  ·  [LinkedIn](https://linkedin.com/in/vinoth-m-qa)
 
