@@ -1,83 +1,163 @@
 # Architecture Decision Records
 
-This document captures the key architectural decisions made in this framework and the reasoning behind each one. These are the questions you should expect in a technical interview — every answer is here.
+## Framework architecture overview
+
+```mermaid
+graph TD
+    T["Test Layer\nGetUserTests · CreateUserTests\nPostCrudTests · ContractTests"]
+    S["Service Layer\nUserService · PostService · AuthService\n@Step annotated"]
+    C["API Client Layer\nApiClient · RequestBuilder\nRetryFilter · AuthFilter · LoggingFilter"]
+    I["Infrastructure Layer\nConfigManager · SecretResolver\nSchemaValidator · TestDataFactory"]
+    W["WireMock\nContract Stubs"]
+    E["External API\njsonplaceholder.typicode.com"]
+
+    T -->|calls| S
+    S -->|delegates to| C
+    C -->|configured by| I
+    C -->|live tests| E
+    C -->|contract tests| W
+```
+
+## Request lifecycle
+
+```mermaid
+sequenceDiagram
+    participant Test
+    participant Service
+    participant RequestBuilder
+    participant ApiClient
+    participant RetryFilter
+    participant API
+
+    Test->>Service: getUserById(1)
+    Service->>RequestBuilder: from(client).withPath("/users/{id}").withPathParam("id",1).get()
+    RequestBuilder->>ApiClient: spec()
+    ApiClient->>RetryFilter: filter chain
+    RetryFilter->>API: GET /users/1
+    API-->>RetryFilter: HTTP 200
+    RetryFilter-->>ApiClient: Response
+    ApiClient-->>RequestBuilder: Response
+    RequestBuilder-->>Service: Response
+    Service-->>Test: Response
+    Test->>Test: ResponseValidator.of(response).hasStatus(200)...
+```
 
 ---
 
-## ADR-001: Ports & Adapters (Hexagonal) Architecture
+## ADR-001: Ports & Adapters architecture
 
-**Decision:** Tests never call RestAssured directly. All HTTP is encapsulated behind a Service → Client boundary.
+**Status:** Accepted
 
-**Context:** In naive frameworks, test classes are tightly coupled to HTTP verbs (`given().when().get()`). When the HTTP library changes or a common pattern (auth, retry) needs updating, every test class requires modification.
+**Decision:** Tests never call RestAssured directly. All HTTP is behind Service → Client.
 
-**Consequences:** Tests read as business specifications. The HTTP library is an implementation detail. The entire client stack can be swapped without touching a single test.
+**Context:** Naive frameworks couple tests to `given().when().get()`. Any shared pattern (auth, retry, correlation ID) requires touching every test class.
+
+**Consequences:** Tests read as business specifications. HTTP library is swappable. Retry, auth, and logging are framework concerns, not test concerns.
 
 ---
 
 ## ADR-002: ThreadLocal ApiClient
 
-**Decision:** `ApiClient` instances are stored in a `ThreadLocal` — one per test thread.
+**Status:** Accepted
 
-**Context:** TestNG parallel execution runs multiple test methods simultaneously across threads. A shared `ApiClient` with mutable request state would cause race conditions. Synchronising access would serialize execution, defeating the purpose of parallelism.
+**Decision:** `ApiClient` instances stored per-thread in `ThreadLocal`.
 
-**Consequences:** Zero race conditions. No synchronisation overhead. Each thread has an isolated HTTP client with its own correlation ID, auth token, and log buffer.
+**Context:** Parallel test execution creates race conditions on shared mutable HTTP client state.
+
+**Consequences:** Zero race conditions. No synchronisation overhead. Each thread has an isolated client with its own correlation ID and log buffer.
 
 ---
 
 ## ADR-003: Immutable RequestBuilder
 
-**Decision:** Every `RequestBuilder` method returns a new instance rather than mutating `this`.
+**Status:** Accepted
 
-**Context:** A mutable builder shared across parallel calls accumulates state from multiple test threads.
+**Decision:** Every `RequestBuilder` method returns a new instance.
 
-**Consequences:** Builders are safe to pass around. No defensive copying needed at call sites.
+**Context:** A mutable builder passed between parallel threads accumulates state incorrectly.
 
----
-
-## ADR-004: JSON Schema Validation as First-Class Assertion
-
-**Decision:** Every response type has a corresponding JSON Schema draft-07 file. Schema validation is called via `ResponseValidator.bodyMatchesSchema()`.
-
-**Context:** Status code assertions tell you the API responded. Schema assertions tell you the API responded *correctly* — with the right field names, types, and required fields. API drift (a field renamed or removed) is caught by schema validation, not status codes.
-
-**Consequences:** The framework detects breaking API changes automatically. Contract tests can run against WireMock stubs, making them independent of external availability.
+**Consequences:** Builders are safe to pass around. No defensive copying required at call sites.
 
 ---
 
-## ADR-005: Dual Reporting Strategy
+## ADR-004: JSON Schema validation as first-class assertion
 
-**Decision:** Run Allure and ExtentReports simultaneously on every test execution.
+**Status:** Accepted
 
-**Context:** Allure is powerful but requires a server or GitHub Pages. ExtentReports produces a self-contained HTML file that any stakeholder can open directly. Different audiences need different views.
+**Decision:** Every response type has a JSON Schema draft-07 file. Validation called via `ResponseValidator.bodyMatchesSchema()`.
 
-**Consequences:** Deep engineering debugging via Allure (step trace, HTTP payloads, history trend). Instant stakeholder communication via ExtentReports (open the file, see pass/fail).
+**Context:** Status code assertions confirm the API responded. Schema assertions confirm it responded *correctly* — right field names, types, required fields.
 
----
-
-## ADR-006: Framework Code in src/main
-
-**Decision:** The client, config, services, and utils packages live in `src/main`, not `src/test`.
-
-**Context:** `src/test` classes are not exported in a Maven build. If the framework were to be shared across test suites for different microservices, placing it in `src/main` allows publishing it as a Maven dependency.
-
-**Consequences:** The framework is independently deployable. Other teams can depend on `com.vinoth.automation:api-automation-core:1.0.0` and write only test classes.
+**Consequences:** Breaking API changes (field renamed, type changed, field removed) are caught automatically. Contracts are versioned alongside tests.
 
 ---
 
-## ADR-007: WireMock for Contract Tests
+## ADR-005: Dual reporting
 
-**Decision:** Contract tests run against a local WireMock server, not the live API.
+**Status:** Accepted
 
-**Context:** Contract tests must be deterministic and fast. Running against a live external API introduces network flakiness and external dependency. WireMock stubs define the expected contract — if the live API drifts from the stub, the test catches it at schema validation time.
+**Decision:** Allure + ExtentReports run simultaneously on every execution.
 
-**Consequences:** Contract tests run in CI without any external network call. They are the fastest and most reliable tests in the suite.
+**Context:** Allure requires GitHub Pages or a server. ExtentReports produces a self-contained HTML file any stakeholder can open.
+
+**Consequences:** Deep engineering debugging via Allure. Instant stakeholder communication via ExtentReports.
 
 ---
 
-## ADR-008: RetryListener over @Test(retryAnalyzer=)
+## ADR-006: src/main for framework code
 
-**Decision:** Retry logic is attached via a TestNG `IRetryAnalyzer` registered as a listener in `testng.xml`, not as an annotation on each test.
+**Status:** Accepted
 
-**Context:** `@Test(retryAnalyzer = RetryAnalyzer.class)` requires the annotation on every test method. A TestNG listener applies retry framework-wide from a single configuration point.
+**Decision:** Client, config, services, and utils in `src/main`, not `src/test`.
 
-**Consequences:** Zero retry boilerplate across all test methods. Retry policy changes in one place.
+**Context:** `src/test` classes are not exported in Maven. Multiple test teams cannot share a `src/test` dependency.
+
+**Consequences:** Framework publishable as `com.vinoth.automation:api-automation-core:2.0.0`.
+
+---
+
+## ADR-007: WireMock for contract tests
+
+**Status:** Accepted
+
+**Decision:** Contract tests run against a local WireMock server started per test class.
+
+**Context:** Contract tests must be deterministic and network-independent for CI reliability.
+
+**Consequences:** Contract tests run offline. No external API availability required. Sub-second execution.
+
+---
+
+## ADR-008: RetryAnalyzer on FAILURE only
+
+**Status:** Accepted
+
+**Decision:** `RetryAnalyzer.retry()` checks `result.getStatus() != ITestResult.FAILURE` before retrying.
+
+**Context:** The original RetryAnalyzer retried unconditionally — causing passing tests to be retried 3 times. On the 4th invocation, TestNG's retry path skips `@BeforeMethod`, causing NPE on `userService`.
+
+**Consequences:** Only genuine failures are retried. `@BeforeMethod(alwaysRun = true)` ensures service objects are reinitialised on every invocation including retries.
+
+---
+
+## ADR-009: EXTERNAL_API_SLA_MS constant
+
+**Status:** Accepted
+
+**Decision:** SLA thresholds extracted to named constants per test class.
+
+**Context:** JSONPlaceholder (free public API) regularly responds in 3–6 seconds. A hardcoded `2000ms` threshold causes intermittent CI failures that are not real failures.
+
+**Consequences:** SLA intent is documented. Different thresholds for external vs internal APIs are explicitly named. Reviewers understand why `8000ms` was chosen.
+
+---
+
+## ADR-010: @BeforeMethod(alwaysRun = true, Method method)
+
+**Status:** Accepted
+
+**Decision:** All test classes use `@BeforeMethod(alwaysRun = true)` with `Method method` parameter.
+
+**Context:** TestNG retry path (`IRetryAnalyzer`) reinvokes the test method directly without re-running `@BeforeMethod`. Service objects initialised in `@BeforeMethod` are null on retry invocations.
+
+**Consequences:** Service objects are always reinitialised. `alwaysRun = true` ensures setup runs even in group-filtered executions.

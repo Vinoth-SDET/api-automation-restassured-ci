@@ -1,42 +1,52 @@
 # ── Build output ──────────────────────────────────────────────────────────────
-  target/
-  *.class
-  *.jar
-  *.war
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-  # ── Maven ─────────────────────────────────────────────────────────────────────
-    .mvn/wrapper/maven-wrapper.jar
-  !**/src/main/**/target/
-  !**/src/test/**/target/
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+.eclipse/
+*.classpath
+*.project
+*.settings/
 
-  # ── Allure reports ────────────────────────────────────────────────────────────
-    allure-results/
-    allure-report/
-    allure-history/
+# ── Test reports (never commit generated output) ──────────────────────────────
+allure-results/
+allure-report/
+target/allure-results/
+target/allure-report/
+target/extent-reports/
+target/surefire-reports/
 
-  # ── Logs ──────────────────────────────────────────────────────────────────────
-  *.log
-  *.log.gz
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-  # ── Docker ────────────────────────────────────────────────────────────────────
-    output/
+# ── Secrets — never commit ────────────────────────────────────────────────────
+*.env
+.env
+.env.local
+.env.*.local
+secrets.properties
+**/config/local.properties
 
-  # ── IDE ───────────────────────────────────────────────────────────────────────
-    .idea/
-  *.iml
-  *.iws
-    .classpath
-    .project
-    .settings/
-  *.swp
-  *.swo
-    .vscode/
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+logs/
+target/logs/
 
-  # ── OS ────────────────────────────────────────────────────────────────────────
-    .DS_Store
-    Thumbs.db
+# ── Maven wrapper ─────────────────────────────────────────────────────────────
+!.mvn/
 
-  # ── Secrets (NEVER commit these) ─────────────────────────────────────────────
-  *.env
-    .env.*
-    secrets.properties
+# ── Docker ────────────────────────────────────────────────────────────────────
+docker-compose.override.yml

@@ -1,59 +1,103 @@
-# ──────────────────────────────────────────────────────────────────────────────
-# Enterprise API Automation Framework — Makefile shortcuts
-#
-# Usage:
-#   make test                           # run regression on QA
-#   make test ENV=staging SUITE=smoke   # run smoke on staging
-#   make report                         # open Allure report (local)
-#   make docker-test ENV=qa             # run tests in Docker
-#   make clean                          # wipe build + report artefacts
-# ──────────────────────────────────────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════════════════════════════
+# Enterprise API Automation Suite — Makefile
+# ═══════════════════════════════════════════════════════════════════════════════
 
 ENV    ?= qa
 SUITE  ?= regression
 THREADS ?= 5
 
-.PHONY: test smoke regression parallel report docker-test clean help
+.PHONY: help compile clean smoke regression contract negative parallel \
+        report allure-serve docker-build docker-test docker-clean \
+        check-deps validate
 
-## Run the specified suite locally
-test:
-	mvn test -B \
-	  -Denv=$(ENV) \
-	  -Dtestng.suite=src/test/resources/testng-suites/$(SUITE).xml \
-	  -Dthreads=$(THREADS)
+help: ## Show this help message
+	@echo "Enterprise API Automation Suite"
+	@echo ""
+	@echo "Usage: make <target> [ENV=qa] [SUITE=regression] [THREADS=5]"
+	@echo ""
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-## Run smoke suite
-smoke:
-	$(MAKE) test SUITE=smoke
+# ── Lifecycle ──────────────────────────────────────────────────────────────────
 
-## Run full regression suite
-regression:
-	$(MAKE) test SUITE=regression
+compile: ## Compile all source code
+	mvn compile --no-transfer-progress
 
-## Run parallel suite
-parallel:
-	$(MAKE) test SUITE=parallel
+clean: ## Remove build artifacts
+	mvn clean --no-transfer-progress
+	rm -rf allure-results allure-report
 
-## Serve Allure report in browser
-report:
-	mvn allure:serve
+validate: ## Validate POM and enforce rules
+	mvn validate enforcer:enforce --no-transfer-progress
 
-## Build Docker image and run tests inside container
-docker-test:
-	docker build \
-	  --build-arg ENV=$(ENV) \
-	  --build-arg SUITE=$(SUITE) \
-	  --build-arg THREADS=$(THREADS) \
-	  -t api-automation:latest .
-	mkdir -p output
-	docker run --rm -v $(PWD)/output:/output api-automation:latest
+# ── Test execution ─────────────────────────────────────────────────────────────
 
-## Clean build artefacts and reports
-clean:
-	mvn clean
-	rm -rf allure-results allure-report output target/logs
+smoke: ## Run smoke suite — fastest feedback (~30s)
+	mvn test \
+		-Denv=$(ENV) \
+		-Dtestng.suite=src/test/resources/testng-suites/smoke.xml \
+		-Dthreads=3 \
+		--no-transfer-progress
 
-## Show this help
-help:
+regression: ## Run full regression suite
+	mvn test \
+		-Denv=$(ENV) \
+		-Dtestng.suite=src/test/resources/testng-suites/regression.xml \
+		-Dthreads=$(THREADS) \
+		--no-transfer-progress
 
-	@grep -E '^##' Makefile | sed 's/## //'
+contract: ## Run WireMock contract tests (offline — no network needed)
+	mvn test \
+		-Dtestng.suite=src/test/resources/testng-suites/contract.xml \
+		--no-transfer-progress
+
+negative: ## Run negative / boundary tests
+	mvn test \
+		-Denv=$(ENV) \
+		-Dtestng.suite=src/test/resources/testng-suites/negative.xml \
+		--no-transfer-progress
+
+parallel: ## Run full suite with maximum parallelism
+	mvn test \
+		-Denv=$(ENV) \
+		-Dtestng.suite=src/test/resources/testng-suites/parallel.xml \
+		-Dthreads=$(THREADS) \
+		--no-transfer-progress
+
+all-suites: smoke regression contract negative ## Run all suites sequentially
+
+# ── Reporting ──────────────────────────────────────────────────────────────────
+
+report: ## Open Allure report locally (requires allure CLI)
+	mvn allure:serve --no-transfer-progress
+
+allure-generate: ## Generate static Allure report in target/
+	mvn allure:report --no-transfer-progress
+
+extent-open: ## Open ExtentReport in browser (macOS)
+	open target/extent-reports/TestReport.html
+
+# ── Docker ─────────────────────────────────────────────────────────────────────
+
+docker-build: ## Build Docker test image
+	docker build -t api-automation-suite:latest .
+
+docker-test: ## Run tests in Docker container
+	docker run --rm \
+		-e ENV=$(ENV) \
+		-e QA_AUTH_TOKEN=$(QA_AUTH_TOKEN) \
+		-v $(PWD)/output:/app/output \
+		api-automation-suite:latest \
+		mvn test -Denv=$(ENV) \
+		-Dtestng.suite=src/test/resources/testng-suites/$(SUITE).xml
+
+docker-clean: ## Remove Docker test image
+	docker rmi api-automation-suite:latest 2>/dev/null || true
+
+# ── Quality ────────────────────────────────────────────────────────────────────
+
+check-deps: ## Run OWASP dependency vulnerability check
+	mvn dependency-check:check --no-transfer-progress
+
+dependency-tree: ## Print full Maven dependency tree
+	mvn dependency:tree --no-transfer-progress

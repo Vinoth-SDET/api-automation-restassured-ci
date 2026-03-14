@@ -1,38 +1,45 @@
-# ── Stage 1: Dependency resolution (cached layer) ────────────────────────────
-# Separating dependency download from test execution means Docker cache is
-# invalidated only when pom.xml changes — not every time test code changes.
-FROM maven:3.9-eclipse-temurin-21-alpine AS deps
+# ═══════════════════════════════════════════════════════════════════════════════
+# Multi-stage Dockerfile for hermetic test execution
+# Stage 1: dependency cache layer (rebuilt only when pom.xml changes)
+# Stage 2: test execution layer
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── Stage 1: dependency cache ─────────────────────────────────────────────────
+FROM eclipse-temurin:21-jdk-jammy AS deps
 
 WORKDIR /app
 COPY pom.xml .
-RUN mvn dependency:go-offline -B --no-transfer-progress
 
+# Download all dependencies without running any code
+# Cached as a separate layer — pom.xml changes bust this, src changes do not
+RUN mvn dependency:go-offline -q --no-transfer-progress 2>/dev/null || \
+    mvn dependency:resolve --no-transfer-progress
 
-# ── Stage 2: Test execution ───────────────────────────────────────────────────
-FROM deps AS test
+# ── Stage 2: test runner ──────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jdk-jammy AS runner
 
+WORKDIR /app
+
+# Reuse the cached Maven repo from stage 1
+COPY --from=deps /root/.m2 /root/.m2
+COPY --from=deps /app/pom.xml .
+
+# Copy source after deps — maximises layer cache hits
 COPY src/ src/
 
-# Build arguments — override at docker build time:
-# docker build --build-arg ENV=staging --build-arg SUITE=regression .
-ARG ENV=qa
-ARG SUITE=regression
-ARG THREADS=5
+# Environment defaults (overridden at runtime via -e flags or docker run env)
+ENV ENV=qa
+ENV SUITE=regression
+ENV THREADS=5
 
-ENV ENV=${ENV}
+# Test execution entrypoint
+CMD mvn test \
+    -Denv=${ENV} \
+    -Dtestng.suite=src/test/resources/testng-suites/${SUITE}.xml \
+    -Dthreads=${THREADS} \
+    --no-transfer-progress
 
-# Run tests; copy reports to /output for docker run -v extraction
-RUN mvn test -B --no-transfer-progress \
-      -Denv=${ENV} \
-      -Dtestng.suite=src/test/resources/testng-suites/${SUITE}.xml \
-      -Dthreads=${THREADS} \
-      -Dlog.level=INFO ; \
-    EXIT_CODE=$? ; \
-    mkdir -p /output ; \
-    cp -r allure-results /output/ 2>/dev/null || true ; \
-    cp -r target/logs    /output/ 2>/dev/null || true ; \
-    exit $EXIT_CODE
-
-# Extract reports after run:
-# docker run --rm -v $(pwd)/output:/output api-tests
-CMD ["sh", "-c", "cp -r allure-results /output/ && cp -r target/logs /output/"]
+# ── Usage ─────────────────────────────────────────────────────────────────────
+# docker build -t api-automation-suite .
+# docker run -e ENV=qa -e QA_AUTH_TOKEN=$QA_AUTH_TOKEN api-automation-suite
+# docker run -e ENV=staging -e SUITE=contract api-automation-suite
