@@ -1,0 +1,35 @@
+<div>POST to https://jsonplaceholder.typicode.com/users</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;name&quot;: &quot;Alice Johnson&quot;,
+    &quot;username&quot;: &quot;alicej&quot;,
+    &quot;email&quot;: &quot;alice@example.com&quot;,
+    &quot;phone&quot;: &quot;555-0100&quot;,
+    &quot;website&quot;: &quot;alicejohnson.dev&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: Bearer no-auth-required</div>
+            <div>Accept: application/json</div>
+            <div>X-Correlation-Id: 6a9caa2f-d88d-4c71-b400-19b622514358</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://jsonplaceholder.typicode.com/users&#39; -H &#39;Authorization: Bearer no-auth-required&#39; -H &#39;Accept: application/json&#39; -H &#39;X-Correlation-Id: 6a9caa2f-d88d-4c71-b400-19b622514358&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;name&quot;: &quot;Alice Johnson&quot;,
+    &quot;username&quot;: &quot;alicej&quot;,
+    &quot;email&quot;: &quot;alice@example.com&quot;,
+    &quot;phone&quot;: &quot;555-0100&quot;,
+    &quot;website&quot;: &quot;alicejohnson.dev&quot;
+}&#39;
+    </div>
+

@@ -1,0 +1,31 @@
+<div>POST to https://jsonplaceholder.typicode.com/posts</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;userId&quot;: 2,
+    &quot;title&quot;: &quot;Why JSON Schema Validation Matters&quot;,
+    &quot;body&quot;: &quot;Contract testing catches API drift early, reducing production incidents and saving debugging time.&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: Bearer no-auth-required</div>
+            <div>Accept: application/json</div>
+            <div>X-Correlation-Id: ae8eb113-0c24-4d49-a673-5d533c42d28d</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;https://jsonplaceholder.typicode.com/posts&#39; -H &#39;Authorization: Bearer no-auth-required&#39; -H &#39;Accept: application/json&#39; -H &#39;X-Correlation-Id: ae8eb113-0c24-4d49-a673-5d533c42d28d&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;userId&quot;: 2,
+    &quot;title&quot;: &quot;Why JSON Schema Validation Matters&quot;,
+    &quot;body&quot;: &quot;Contract testing catches API drift early, reducing production incidents and saving debugging time.&quot;
+}&#39;
+    </div>
+
