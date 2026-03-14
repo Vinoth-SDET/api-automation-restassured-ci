@@ -1,17 +1,17 @@
 [
   {
     "userId": 1,
-    "title": "Understanding REST API Testing",
-    "body": "REST APIs are the backbone of modern software. This post covers best practices for testing them systematically."
+    "title": "Introduction to API Testing",
+    "body": "API testing is a type of software testing that validates Application Programming Interfaces."
   },
   {
     "userId": 1,
-    "title": "Enterprise Test Automation Patterns",
-    "body": "Layered test frameworks with service abstractions make automation maintainable at scale."
+    "title": "RestAssured Best Practices",
+    "body": "RestAssured is a powerful Java library for testing REST APIs with a fluent DSL."
   },
   {
     "userId": 2,
-    "title": "Why JSON Schema Validation Matters",
-    "body": "Contract testing catches API drift early, reducing production incidents and saving debugging time."
+    "title": "TestNG Parallel Execution",
+    "body": "TestNG supports parallel test execution at suite, test, class, and method levels."
   }
 ]

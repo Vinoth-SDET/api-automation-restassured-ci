@@ -1,32 +1,56 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <!--
-  Parallel Suite — maximum concurrency for CI speed.
-  Thread count is overridable via -Dthreads JVM property.
-
-  ThreadLocal<ApiClient> in BaseTest ensures each thread has its own
-  isolated HTTP client — no shared state, no race conditions.
+    parallel="tests" — each <test> block runs in its own thread.
+    BaseTest uses ThreadLocal<ApiClient> — zero shared state between threads.
 -->
-<suite name="API Regression — Parallel"
-       parallel="classes"
-       thread-count="5"
-       verbose="2"
-       data-provider-thread-count="5">
+<suite name="Parallel Suite" verbose="1" parallel="tests" thread-count="5">
 
     <listeners>
-        <listener class-name="com.vinoth.api.utils.RetryAnalyzer$RetryListener"/>
+        <listener class-name="com.vinoth.automation.listeners.RetryListener"/>
+        <listener class-name="com.vinoth.automation.listeners.AllureListener"/>
+        <listener class-name="com.vinoth.automation.listeners.ExtentListener"/>
     </listeners>
 
-    <test name="User Tests — Parallel">
+    <test name="GetUserTests">
         <classes>
-            <class name="com.vinoth.api.tests.users.GetUserTests"/>
-            <class name="com.vinoth.api.tests.users.CreateUserTests"/>
-            <class name="com.vinoth.api.tests.users.DeleteUserTests"/>
+            <class name="com.vinoth.automation.tests.users.GetUserTests"/>
         </classes>
     </test>
 
-    <test name="Post Tests — Parallel">
+    <test name="CreateUserTests">
         <classes>
-            <class name="com.vinoth.api.tests.posts.PostCrudTests"/>
+            <class name="com.vinoth.automation.tests.users.CreateUserTests"/>
+        </classes>
+    </test>
+
+    <test name="UpdateUserTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.users.UpdateUserTests"/>
+        </classes>
+    </test>
+
+    <test name="DeleteUserTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.users.DeleteUserTests"/>
+        </classes>
+    </test>
+
+    <test name="UserNegativeTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.users.UserNegativeTests"/>
+        </classes>
+    </test>
+
+    <test name="PostCrudTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.posts.PostCrudTests"/>
+        </classes>
+    </test>
+
+    <test name="PostNegativeTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.posts.PostNegativeTests"/>
         </classes>
     </test>
 

@@ -134,6 +134,15 @@
             <scope>runtime</scope>
         </dependency>
 
+
+        <!-- WireMock — offline contract testing -->
+        <dependency>
+            <groupId>org.wiremock</groupId>
+            <artifactId>wiremock</artifactId>
+            <version>3.3.1</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
