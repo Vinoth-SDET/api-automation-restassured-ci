@@ -3,21 +3,21 @@
     "name": "Alice Johnson",
     "username": "alicej",
     "email": "alice@example.com",
-    "phone": "555-0100",
-    "website": "alicejohnson.dev"
+    "phone": "555-0101",
+    "website": "alice.dev"
   },
   {
     "name": "Bob Smith",
-    "username": "bsmith",
+    "username": "bobs",
     "email": "bob@example.com",
-    "phone": "555-0101",
-    "website": "bobsmith.io"
+    "phone": "555-0102",
+    "website": "bob.io"
   },
   {
-    "name": "Carol Davis",
-    "username": "cdavis",
+    "name": "Carol White",
+    "username": "carolw",
     "email": "carol@example.com",
-    "phone": "555-0102",
-    "website": "carol.dev"
+    "phone": "555-0103",
+    "website": "carol.tech"
   }
 ]

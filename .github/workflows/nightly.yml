@@ -1,0 +1,87 @@
+name: Nightly Regression - API Automation Suite
+
+on:
+  schedule:
+    - cron: '0 0 * * *'    # midnight UTC every day
+  workflow_dispatch:         # allow manual trigger from Actions tab
+
+jobs:
+  nightly-regression:
+    name: Regression — ${{ matrix.env }} / ${{ matrix.suite }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false       # run all matrix combinations even if one fails
+      matrix:
+        env:   [dev, qa, staging]
+        suite: [regression, contract, negative]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven          # cuts build time ~60%
+
+      - name: Run ${{ matrix.suite }} on ${{ matrix.env }}
+        run: |
+          mvn test \
+            -Denv=${{ matrix.env }} \
+            -Dtestng.suite=src/test/resources/testng-suites/${{ matrix.suite }}.xml \
+            -Dthreads=5 \
+            --no-transfer-progress
+        env:
+          DEV_AUTH_TOKEN:     ${{ secrets.DEV_AUTH_TOKEN }}
+          QA_AUTH_TOKEN:      ${{ secrets.QA_AUTH_TOKEN }}
+          STAGING_AUTH_TOKEN: ${{ secrets.STAGING_AUTH_TOKEN }}
+
+      - name: Upload Allure results
+        if: always()           # upload even on test failures
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-nightly-${{ matrix.env }}-${{ matrix.suite }}
+          path: allure-results
+          retention-days: 14
+
+      - name: Upload ExtentReport
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extent-nightly-${{ matrix.env }}-${{ matrix.suite }}
+          path: target/extent-reports/
+          retention-days: 14
+
+  publish-allure:
+    name: Publish Allure report to GitHub Pages
+    needs: nightly-regression
+    runs-on: ubuntu-latest
+    if: always()               # publish even if some matrix jobs failed
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all Allure results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: allure-nightly-*
+          path: allure-results-combined
+          merge-multiple: true
+
+      - name: Generate Allure report
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_results: allure-results-combined
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

@@ -1,147 +1,119 @@
-name: CI - API Automation Suite
+name: CI — Build & Test
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: "Target environment"
-        required: true
-        default: "qa"
-        type: choice
-        options: [ dev, qa, staging ]
-
-env:
-  JAVA_VERSION: "21"
-  MAVEN_OPTS: "-Xmx1024m"
+    branches: [main]
 
 jobs:
-
-  # Job 1: Compile and Validate
-  build:
-    name: Build & Compile
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: temurin
-
-      - name: Cache Maven packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: maven-
-
-      - name: Compile
-        run: mvn compile test-compile -B
-
-  # Job 2: Run Tests
-  test:
-    name: Test [${{ matrix.suite }}] on ${{ matrix.env }}
-    needs: build
+  build-and-smoke:
+    name: Compile + Smoke (${{ matrix.env }})
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
       matrix:
-        env: [ qa ]
-        suite: [ smoke, regression ]
+        env: [qa]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
         with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: temurin
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
 
-      - name: Restore Maven cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ hashFiles('**/pom.xml') }}
+      - name: Compile
+        run: mvn compile --no-transfer-progress
 
-      - name: Run ${{ matrix.suite }} suite
+      - name: Run smoke suite
+        run: |
+          mvn test \
+            -Denv=${{ matrix.env }} \
+            -Dtestng.suite=src/test/resources/testng-suites/smoke.xml \
+            -Dthreads=3 \
+            --no-transfer-progress
         env:
           QA_AUTH_TOKEN: ${{ secrets.QA_AUTH_TOKEN }}
-        run: |
-          mvn test -B \
-            -Denv=${{ matrix.env }} \
-            -Dtestng.suite=src/test/resources/testng-suites/${{ matrix.suite }}.xml \
-            -Dthreads=5
 
-      - name: Debug - list allure-results directory
-        if: always()
-        run: |
-          echo "=== Project root ==="
-          ls -la
-          echo "=== allure-results (root) ==="
-          ls -la allure-results/ 2>/dev/null || echo "NOT FOUND at root"
-          echo "=== target/allure-results ==="
-          ls -la target/allure-results/ 2>/dev/null || echo "NOT FOUND at target/allure-results"
-          echo "=== extent-reports ==="
-          ls -la target/extent-reports/ 2>/dev/null || echo "NOT FOUND"
-
-      # Allure writes to allure-results/ at project root (not target/)
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: allure-results-${{ matrix.suite }}-${{ matrix.env }}
-          path: allure-results/
-          if-no-files-found: warn
-          retention-days: 14
+          name: allure-smoke-${{ matrix.env }}
+          path: allure-results
+          retention-days: 7
 
-      # ExtentReports writes to target/extent-reports/
-      - name: Upload Extent Report
+      - name: Upload ExtentReport
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: extent-report-${{ matrix.suite }}-${{ matrix.env }}
-          path: target/extent-reports/TestReport.html
-          if-no-files-found: warn
-          retention-days: 14
+          name: extent-smoke-${{ matrix.env }}
+          path: target/extent-reports/
+          retention-days: 7
 
-      - name: Upload log files
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: logs-${{ matrix.suite }}-${{ matrix.env }}
-          path: target/logs/
-          if-no-files-found: warn
-
-  # Job 3: Publish Allure Report to GitHub Pages
-  report:
-    name: Publish Allure Report
-    needs: test
+  regression:
+    name: Regression — ${{ matrix.suite }}
     runs-on: ubuntu-latest
-    if: always()
+    needs: build-and-smoke          # only runs if smoke passes
+    if: github.ref == 'refs/heads/main'
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [regression, contract, negative]
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Run ${{ matrix.suite }} suite
+        run: |
+          mvn test \
+            -Denv=qa \
+            -Dtestng.suite=src/test/resources/testng-suites/${{ matrix.suite }}.xml \
+            -Dthreads=5 \
+            --no-transfer-progress
+        env:
+          QA_AUTH_TOKEN: ${{ secrets.QA_AUTH_TOKEN }}
+
+      - name: Upload Allure results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-${{ matrix.suite }}
+          path: allure-results
+          retention-days: 14
+
+  publish-allure-pages:
+    name: Publish Allure to GitHub Pages
+    needs: regression
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && always()
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Download all Allure results
         uses: actions/download-artifact@v4
         with:
-          pattern: allure-results-*
-          path: allure-results/
+          pattern: allure-*
+          path: all-allure-results
           merge-multiple: true
 
-      - name: Debug - show downloaded results
-        run: |
-          echo "=== Downloaded allure-results ==="
-          find allure-results/ -type f 2>/dev/null || echo "allure-results directory is empty"
-
-      - name: Generate and Deploy Allure Report
+      - name: Generate Allure report
         uses: simple-elf/allure-report-action@master
         with:
-          allure_results: allure-results
+          allure_results: all-allure-results
           gh_pages: gh-pages
           allure_report: allure-report
           allure_history: allure-history
