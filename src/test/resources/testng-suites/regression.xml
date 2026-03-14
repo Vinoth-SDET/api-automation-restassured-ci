@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Regression Suite" verbose="1" parallel="false">
+
     <listeners>
         <listener class-name="com.vinoth.automation.listeners.RetryListener"/>
         <listener class-name="com.vinoth.automation.listeners.AllureListener"/>
         <listener class-name="com.vinoth.automation.listeners.ExtentListener"/>
     </listeners>
+
     <test name="User API Tests">
         <classes>
             <class name="com.vinoth.automation.tests.users.GetUserTests"/>
@@ -15,10 +17,12 @@
             <class name="com.vinoth.automation.tests.users.UserNegativeTests"/>
         </classes>
     </test>
+
     <test name="Post API Tests">
         <classes>
             <class name="com.vinoth.automation.tests.posts.PostCrudTests"/>
             <class name="com.vinoth.automation.tests.posts.PostNegativeTests"/>
         </classes>
     </test>
+
 </suite>

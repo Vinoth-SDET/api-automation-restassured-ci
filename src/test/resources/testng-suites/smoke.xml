@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Smoke Suite" verbose="1" parallel="false">
+
     <listeners>
         <listener class-name="com.vinoth.automation.listeners.RetryListener"/>
         <listener class-name="com.vinoth.automation.listeners.AllureListener"/>
+        <listener class-name="com.vinoth.automation.listeners.ExtentListener"/>
     </listeners>
+
     <test name="Smoke Tests">
         <groups>
-            <run><include name="smoke"/></run>
+            <run>
+                <include name="smoke"/>
+            </run>
         </groups>
         <classes>
             <class name="com.vinoth.automation.tests.users.GetUserTests"/>
@@ -16,4 +21,5 @@
             <class name="com.vinoth.automation.tests.posts.PostCrudTests"/>
         </classes>
     </test>
+
 </suite>

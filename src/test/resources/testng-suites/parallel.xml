@@ -5,29 +5,53 @@
     BaseTest uses ThreadLocal<ApiClient> — zero shared state between threads.
 -->
 <suite name="Parallel Suite" verbose="1" parallel="tests" thread-count="5">
+
     <listeners>
         <listener class-name="com.vinoth.automation.listeners.RetryListener"/>
         <listener class-name="com.vinoth.automation.listeners.AllureListener"/>
+        <listener class-name="com.vinoth.automation.listeners.ExtentListener"/>
     </listeners>
+
     <test name="GetUserTests">
-        <classes><class name="com.vinoth.automation.tests.users.GetUserTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.users.GetUserTests"/>
+        </classes>
     </test>
+
     <test name="CreateUserTests">
-        <classes><class name="com.vinoth.automation.tests.users.CreateUserTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.users.CreateUserTests"/>
+        </classes>
     </test>
+
     <test name="UpdateUserTests">
-        <classes><class name="com.vinoth.automation.tests.users.UpdateUserTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.users.UpdateUserTests"/>
+        </classes>
     </test>
+
     <test name="DeleteUserTests">
-        <classes><class name="com.vinoth.automation.tests.users.DeleteUserTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.users.DeleteUserTests"/>
+        </classes>
     </test>
-    <test name="PostCrudTests">
-        <classes><class name="com.vinoth.automation.tests.posts.PostCrudTests"/></classes>
-    </test>
+
     <test name="UserNegativeTests">
-        <classes><class name="com.vinoth.automation.tests.users.UserNegativeTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.users.UserNegativeTests"/>
+        </classes>
     </test>
+
+    <test name="PostCrudTests">
+        <classes>
+            <class name="com.vinoth.automation.tests.posts.PostCrudTests"/>
+        </classes>
+    </test>
+
     <test name="PostNegativeTests">
-        <classes><class name="com.vinoth.automation.tests.posts.PostNegativeTests"/></classes>
+        <classes>
+            <class name="com.vinoth.automation.tests.posts.PostNegativeTests"/>
+        </classes>
     </test>
+
 </suite>
