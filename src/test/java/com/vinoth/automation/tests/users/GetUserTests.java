@@ -10,6 +10,8 @@ import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Epic("User Management API")
@@ -20,8 +22,13 @@ public class GetUserTests extends BaseTest {
 
     private UserService userService;
 
-    @BeforeMethod
-    public void initService() {
+    /**
+     * @BeforeMethod receives the Method parameter — runs before EVERY test invocation
+     * including retries. This is the correct place for per-test state reset.
+     * The service is recreated each time to ensure a fresh ApiClient per invocation.
+     */
+    @BeforeMethod(alwaysRun = true)
+    public void initService(Method method) {
         userService = new UserService(client());
     }
 

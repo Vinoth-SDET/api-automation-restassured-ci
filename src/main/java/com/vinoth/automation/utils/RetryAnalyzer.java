@@ -6,35 +6,38 @@ import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 /**
- * TestNG retry analyzer.
+ * TestNG retry analyzer — retries genuinely FAILED tests only.
  *
- * Registered as a TestNG listener in testng-suites/*.xml — NOT via
- * @Test(retryAnalyzer=...) annotation. This means zero boilerplate
- * in any test class; retry policy is controlled from one place.
+ * KEY DESIGN: TestNG creates ONE RetryAnalyzer instance per test method
+ * invocation when attached via IAnnotationTransformer (RetryListener).
+ * The counter is therefore naturally scoped per-method — no manual reset needed.
  *
- * Max retry count is driven by ConfigManager → config/{env}.properties:
- *   max.retries = 2
- *
- * Only retries on genuine test failures (FAILURE status).
- * Does not retry on assertion errors that indicate real bugs.
+ * Only retries on ITestResult.FAILURE.
+ * Does NOT retry on SKIP or SUCCESS — this was the CI bug where passing
+ * tests were being retried, causing @BeforeMethod to be skipped on the
+ * retry path and NPEs on the 4th invocation.
  */
 @Log4j2
 public class RetryAnalyzer implements IRetryAnalyzer {
 
     private int currentRetryCount = 0;
-
-    // Read max retries from ConfigManager using the correct typed getter
     private final int maxRetryCount = ConfigManager.getInstance().getMaxRetries();
 
     @Override
     public boolean retry(ITestResult result) {
+        // Only retry genuine failures — never retry passing or skipped tests
+        if (result.getStatus() != ITestResult.FAILURE) {
+            return false;
+        }
+
         if (currentRetryCount < maxRetryCount) {
             currentRetryCount++;
-            log.warn("Retrying test [{}] — attempt {}/{}",
+            log.warn("Test FAILED [{}] — retry {}/{}",
                     result.getName(), currentRetryCount, maxRetryCount);
             return true;
         }
-        log.info("Test [{}] exhausted {} retry attempt(s) — marking FAILED",
+
+        log.info("Test [{}] exhausted {} retry attempts — marking FAILED",
                 result.getName(), maxRetryCount);
         return false;
     }

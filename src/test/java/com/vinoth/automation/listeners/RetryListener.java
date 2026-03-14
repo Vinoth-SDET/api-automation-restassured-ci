@@ -9,12 +9,10 @@ import java.lang.reflect.Method;
 
 /**
  * TestNG listener that attaches RetryAnalyzer to every @Test method.
- * Registered in testng-suites/*.xml — zero annotation boilerplate in test classes.
- * <p>
- * Register in suite XML:
- * <listeners>
- * <listener class-name="com.vinoth.automation.listeners.RetryListener"/>
- * </listeners>
+ *
+ * Registered in testng-suites XML — zero @Test annotation boilerplate.
+ * RetryAnalyzer.retry() only triggers on genuine FAILURE status,
+ * so passing tests are never retried and @BeforeMethod is not skipped.
  */
 public class RetryListener implements IAnnotationTransformer {
 

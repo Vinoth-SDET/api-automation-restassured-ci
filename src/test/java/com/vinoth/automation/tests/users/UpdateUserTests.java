@@ -12,16 +12,17 @@ import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
+
 @Epic("User Management API")
 @Feature("PUT /users")
 public class UpdateUserTests extends BaseTest {
 
     private static final long EXTERNAL_API_SLA_MS = 8000L;
-
     private UserService userService;
 
-    @BeforeMethod
-    public void initService() {
+    @BeforeMethod(alwaysRun = true)
+    public void initService(Method method) {
         userService = new UserService(client());
     }
 
